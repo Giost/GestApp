@@ -324,7 +324,7 @@ public class LoginActivity extends AppCompatActivity {
                     user.setPersonale(response.getInt("PERSONALE"));
                     user.setDirezione(response.getInt("DIREZIONE"));
                     user.setCapoProgetto(response.getInt("CAPO_PROGETTO"));
-                    user.setPhone(response.getString("telefono"));
+                    user.setPhone(response.getString("TELEFONO"));
                     user.setLuogoNascita(response.getString("luogo_nascita"));
                     user.setDataNascita(response.getString("data_nascita"));
                     ((MyApp) getApplication()).setCurrentUser(user);
