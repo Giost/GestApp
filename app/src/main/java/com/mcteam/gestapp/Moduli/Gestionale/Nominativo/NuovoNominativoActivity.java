@@ -377,7 +377,7 @@ public class NuovoNominativoActivity extends AppCompatActivity {
         }
         nominativo.setLuogoNascita(LuogoNascita);
         nominativo.setPIVA(PIVA);
-        nominativo.setmFax(Fax);
+        nominativo.setFax(Fax);
         nominativo.setCod_Fiscale(Cod_Fiscale);
         nominativo.setCartaID(CartaID);
         nominativo.setPatente(Patente);

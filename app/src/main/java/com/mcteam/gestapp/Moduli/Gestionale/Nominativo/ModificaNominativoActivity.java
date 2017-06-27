@@ -321,7 +321,7 @@ public class ModificaNominativoActivity extends AppCompatActivity {
         }
         nominativo.setLuogoNascita(LuogoNascita);
         nominativo.setPIVA(PIVA);
-        nominativo.setmFax(Fax);
+        nominativo.setFax(Fax);
         nominativo.setCod_Fiscale(Cod_Fiscale);
         nominativo.setCartaID(CartaID);
         nominativo.setPatente(Patente);
@@ -384,7 +384,7 @@ public class ModificaNominativoActivity extends AppCompatActivity {
         mNoteDettView.setText(nominativo.getNoteDett());
         mCellulareView.setText(nominativo.getCellulare());
         mTelefono.setText(nominativo.getTelefono());
-        mFaxView.setText(nominativo.getmFax());
+        mFaxView.setText(nominativo.getFax());
     }
 
 

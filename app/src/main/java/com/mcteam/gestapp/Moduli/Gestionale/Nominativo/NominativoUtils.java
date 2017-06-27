@@ -162,7 +162,7 @@ public class NominativoUtils {
 
         table.addCell(nominativo.getNazionalita() == null ? " " : nominativo.getNazionalita().equals("") ? " " : nominativo.getNazionalita());
         table.addCell(nominativo.getTelefono() == null ? " " : nominativo.getTelefono().equals("") ? " " : nominativo.getTelefono());
-        table.addCell(nominativo.getmFax() == null ? " " : nominativo.getmFax().equals("") ? " " : nominativo.getmFax());
+        table.addCell(nominativo.getFax() == null ? " " : nominativo.getFax().equals("") ? " " : nominativo.getFax());
         table.addCell(nominativo.getCellulare() == null ? " " : nominativo.getCellulare().equals("") ? " " : nominativo.getCellulare());
 
         pdfToPrint.add(table);
@@ -412,7 +412,7 @@ public class NominativoUtils {
             table.addCell(nominativo.getProvincia() == null ? " " : nominativo.getProvincia());
             table.addCell(nominativo.getCitta() == null ? " " : nominativo.getCitta());
             table.addCell(nominativo.getTelefono() == null ? " " : nominativo.getTelefono());
-            table.addCell(nominativo.getmFax() == null ? " " : nominativo.getmFax());
+            table.addCell(nominativo.getFax() == null ? " " : nominativo.getFax());
             table.addCell(nominativo.getCellulare() == null ? " " : nominativo.getCellulare());
             table.addCell(nominativo.getEmail() == null ? " " : nominativo.getEmail());
             table.addCell(nominativo.getNote() == null ? " " : nominativo.getNote());
@@ -508,7 +508,7 @@ public class NominativoUtils {
             cella.setCellValue(nominativo.getTelefono());
 
             cella = row.createCell(6);
-            cella.setCellValue(nominativo.getmFax());
+            cella.setCellValue(nominativo.getFax());
 
             cella = row.createCell(7);
             cella.setCellValue(nominativo.getCellulare());
