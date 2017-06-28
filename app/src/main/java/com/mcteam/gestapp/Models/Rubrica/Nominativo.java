@@ -117,6 +117,7 @@ public class Nominativo implements Parcelable {
         mDataNascita = in.readString();
         mLuogoNascita = in.readString();
         mPIVA = in.readString();
+        mFax = in.readString();
         mCod_Fiscale = in.readString();
         mCartaID = in.readString();
         mPatente = in.readString();
@@ -132,6 +133,7 @@ public class Nominativo implements Parcelable {
         mIDStage = in.readString();
         mSocieta = in.readParcelable(Societa.class.getClassLoader());
         mCellulare = in.readString();
+        mTelefono = in.readString();
     }
 
     public static final Creator<Nominativo> CREATOR = new Creator<Nominativo>() {
@@ -166,11 +168,11 @@ public class Nominativo implements Parcelable {
         this.ID = ID;
     }
 
-    public String getmFax() {
+    public String getFax() {
         return mFax;
     }
 
-    public void setmFax(String mFax) {
+    public void setFax(String mFax) {
         this.mFax = mFax;
     }
 
@@ -397,6 +399,7 @@ public class Nominativo implements Parcelable {
         dest.writeString(mDataNascita);
         dest.writeString(mLuogoNascita);
         dest.writeString(mPIVA);
+        dest.writeString(mFax);
         dest.writeString(mCod_Fiscale);
         dest.writeString(mCartaID);
         dest.writeString(mPatente);
@@ -412,6 +415,7 @@ public class Nominativo implements Parcelable {
         dest.writeString(mIDStage);
         dest.writeParcelable(mSocieta, flags);
         dest.writeString(mCellulare);
+        dest.writeString(mTelefono);
     }
 
 

@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +50,7 @@ public class VisualizzaNominativoActivity extends AppCompatActivity {
     TextView mDataNascitaView;
     TextView mLuogoNascitaView;
     TextView mPIVAView;
+    TextView mFaxView;
     TextView mCod_FiscaleView;
     TextView mCartaIDView;
     TextView mPatenteView;
@@ -64,6 +66,7 @@ public class VisualizzaNominativoActivity extends AppCompatActivity {
     Button mViewSocieta;
     TextView mSocietaView;
     TextView mCellulareView;
+    TextView mTelefonoView;
     LinearLayout mDettagliView;
     Nominativo mNominativoAttuale = null;
     UserInfo mActualUser = null;
@@ -108,6 +111,7 @@ public class VisualizzaNominativoActivity extends AppCompatActivity {
         mDataNascitaView = (TextView) findViewById(R.id.visualizza_nominativo_data_nascita);
         mLuogoNascitaView = (TextView) findViewById(R.id.visualizza_nominativo_luogo_nascita);
         mPIVAView = (TextView) findViewById(R.id.visualizza_nominativo_partita_iva);
+        mFaxView = (TextView) findViewById(R.id.visualizza_nominativo_fax);
         mCod_FiscaleView = (TextView) findViewById(R.id.visualizza_nominativo_codice_fiscale);
         mCartaIDView = (TextView) findViewById(R.id.visualizza_nominativo_carta_identita);
         mPatenteView = (TextView) findViewById(R.id.visualizza_nominativo_patente);
@@ -122,6 +126,7 @@ public class VisualizzaNominativoActivity extends AppCompatActivity {
         mNoteDettView = (TextView) findViewById(R.id.visualizza_nominativo_note_dett);
         mSocietaView = (TextView) findViewById(R.id.visualizza_nominativo_societa);
         mCellulareView = (TextView) findViewById(R.id.visualizza_nominativo_cellulare);
+        mTelefonoView = (TextView) findViewById(R.id.visualizza_nominativo_telefono);
 
         mViewSocieta = (Button) findViewById(R.id.nominativo_societa_view);
 
@@ -229,6 +234,7 @@ public class VisualizzaNominativoActivity extends AppCompatActivity {
         mDataNascitaView.setText(nominativo.getDataNascita() == null ? " " : TextUtils.isEmpty(nominativo.getDataNascita()) ? " " : !Functions.validateReverseDate(nominativo.getDataNascita()) ? "" : Functions.getFormattedDate(nominativo.getDataNascita()));
         mLuogoNascitaView.setText(nominativo.getLuogoNascita());
         mPIVAView.setText(nominativo.getPIVA());
+        mFaxView.setText(nominativo.getFax());
         mCod_FiscaleView.setText(nominativo.getCod_Fiscale());
         mCartaIDView.setText(nominativo.getCartaID());
         mPatenteView.setText(nominativo.getPatente());
@@ -244,7 +250,8 @@ public class VisualizzaNominativoActivity extends AppCompatActivity {
         if (nominativo.getSocieta() != null)
             mSocietaView.setText(nominativo.getSocieta().getNomeSocietà());
         mCellulareView.setText(nominativo.getCellulare());
-
+        mTelefonoView.setText(nominativo.getTelefono());
+        //Log.d("Tel: ",nominativo.getTelefono());
     }
 
     @Override

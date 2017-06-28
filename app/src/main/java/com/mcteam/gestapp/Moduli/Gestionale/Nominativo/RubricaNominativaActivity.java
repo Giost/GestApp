@@ -333,7 +333,7 @@ public class RubricaNominativaActivity extends AppCompatActivity {
                     nominativo.setIBAN(response.getString("iban"));
                     nominativo.setNazionalita(response.getString("NAZIONALITA"));
                     nominativo.setTelefono(response.getString("TELEFONO"));
-                    nominativo.setmFax(response.getString("FAX"));
+                    nominativo.setFax(response.getString("FAX"));
                     nominativo.setCellulare(response.getString("CELLULARE"));
                     nominativo.setEmail(response.getString("EMAIL"));
                     nominativo.setNote(response.getString("NOTE"));
