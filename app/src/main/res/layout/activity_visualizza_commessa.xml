@@ -166,31 +166,34 @@
                     android:clickable="false">
 
                     <RadioButton
+                        android:id="@+id/visualizza_commessa_marketing"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:editable="false"
                         android:enabled="false"
                         android:text="Marketing"
-                        android:textSize="16dp"
-                        android:id="@+id/visualizza_commessa_marketing"
-                        android:checked="false" />
+                        android:textSize="16dp" />
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textSize="16dp"
-                        android:text="Offerta"
-                        android:id="@+id/visualizza_commessa_offerta"
-                        android:checked="false" />
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:enabled="false"
-                        android:textSize="16dp"
-                        android:layout_height="wrap_content"
-                        android:text="Ordine"
                         android:id="@+id/visualizza_commessa_ordine"
-                        android:checked="false" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:editable="false"
+                        android:enabled="false"
+                        android:text="Ordine"
+                        android:textSize="16dp" />
+
+                    <RadioButton
+                        android:id="@+id/visualizza_commessa_offerta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:editable="false"
+                        android:enabled="false"
+                        android:text="Offerta"
+                        android:textSize="16dp" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
@@ -398,16 +401,16 @@
                     android:layout_marginRight="30dp" />
 
                 <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/visualizza_commessa_modifica_button"
                     android:layout_width="70dp"
                     android:layout_height="50dp"
-                    android:id="@+id/visualizza_commessa_modifica_button"
-                    app:bootstrapText="{fa-pencil}"
-                    app:bootstrapSize="lg"
+                    android:layout_marginRight="30dp"
                     app:bootstrapBrand="warning"
+                    app:bootstrapSize="lg"
+                    app:bootstrapText="{fa-pencil}"
                     app:buttonMode="regular"
-                    app:showOutline="true"
                     app:roundedCorners="true"
-                    android:layout_marginRight="30dp" />
+                    app:showOutline="true" />
 
                 <com.beardedhen.androidbootstrap.BootstrapButton
                     android:layout_width="70dp"
