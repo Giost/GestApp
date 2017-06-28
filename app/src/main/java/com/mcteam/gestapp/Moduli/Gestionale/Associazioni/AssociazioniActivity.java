@@ -238,10 +238,14 @@ public class AssociazioniActivity extends AppCompatActivity {
     private void updateList(ArrayList<Associazione> list) {
         showProgress(false);
         Collections.sort(list, associazioniComparator);
-        mListAdapeter.cleanAlphaIndex();
-        mAssociazioniList.clear();
-        mAssociazioniList.addAll(list);
-        mListAdapeter.notifyDataSetChanged();
+        if (!mAssociazioniList.equals(list))
+        {
+            mAssociazioniList.clear();
+            mAssociazioniList.addAll(list);
+            mListAdapeter.cleanAlphaIndex();
+            mListAdapeter.notifyDataSetChanged();
+            mAssociazioniListView.setSelectionAfterHeaderView();
+        }
     }
 
 

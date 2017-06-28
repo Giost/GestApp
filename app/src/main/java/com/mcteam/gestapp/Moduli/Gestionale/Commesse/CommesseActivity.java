@@ -262,9 +262,14 @@ public class CommesseActivity extends AppCompatActivity {
     public void updateList(ArrayList<Commessa> list) {
         showProgress(false);
         Collections.sort(list, ComparatorPool.getCommessaComparator());
-        mCommesseList.clear();
-        mCommesseList.addAll(list);
-        mCommesseListAdapter.notifyDataSetChanged();
+        if (!mCommesseList.equals(list))
+        {
+            mCommesseList.clear();
+            mCommesseList.addAll(list);
+            mCommesseListAdapter.clearAlphabeticIndex();
+            mCommesseListAdapter.notifyDataSetChanged();
+            mCommesseListView.setSelectionAfterHeaderView();
+        }
     }
 
     public void updateOriginalList(ArrayList<Commessa> newList) {

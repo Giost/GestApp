@@ -406,11 +406,15 @@ public class SistemiAcitivity extends AppCompatActivity {
     }
 
     private void updateList(ArrayList<UserInfo> list) {
-        mAccessiList.clear();
-        mAccessiList.addAll(list);
-        Collections.sort(mAccessiList, surnameSortingComparator);
-        mAccessiListAdapter.cleanAlphabeticIndex();
-        mAccessiListAdapter.notifyDataSetChanged();
+        Collections.sort(list, surnameSortingComparator);
+        if (!mAccessiList.equals(list))
+        {
+            mAccessiList.clear();
+            mAccessiList.addAll(list);
+            mAccessiListAdapter.cleanAlphabeticIndex();
+            mAccessiListAdapter.notifyDataSetChanged();
+            mAccessiListView.setSelectionAfterHeaderView();
+        }
     }
 
     private void simpleSearch(String query) {

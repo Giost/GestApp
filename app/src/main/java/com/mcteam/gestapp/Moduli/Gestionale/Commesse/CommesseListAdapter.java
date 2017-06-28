@@ -32,6 +32,11 @@ public class CommesseListAdapter extends ArrayAdapter<Commessa> {
         isStorico = storico;
     }
 
+    public void clearAlphabeticIndex() {
+        mAlphabeticIndex.clear();
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         //get the data from the position

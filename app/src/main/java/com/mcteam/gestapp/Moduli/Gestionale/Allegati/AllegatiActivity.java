@@ -185,10 +185,14 @@ public class AllegatiActivity extends AppCompatActivity {
     private void updateList(ArrayList<Allegato> list) {
         showProgress(false);
         Collections.sort(list, allegatoComparator);
-        mAllegatiAdapter.clear();
-        mAllegatiAdapter.addAll(list);
-        mAllegatiAdapter.cleanAlphabeticIndex();
-        mAllegatiAdapter.notifyDataSetChanged();
+        if (!mAllegatiAdapter.equals(list))
+        {
+            mAllegatiAdapter.clear();
+            mAllegatiAdapter.addAll(list);
+            mAllegatiAdapter.cleanAlphabeticIndex();
+            mAllegatiAdapter.notifyDataSetChanged();
+            mAllegatiListView.setSelectionAfterHeaderView();
+        }
     }
 
     private void showProgress(boolean show) {

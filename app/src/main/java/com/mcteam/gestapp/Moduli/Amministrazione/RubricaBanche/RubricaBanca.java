@@ -229,10 +229,13 @@ public class RubricaBanca extends AppCompatActivity {
     private void updateList(ArrayList<Banca> list) {
         showProgress(false);
         Collections.sort(list, bancaComparator);
-        mBancaAdapter.clear();
-        mBancaAdapter.addAll(list);
-        mBancaAdapter.cleanAlphabeticIndex();
-        mBancaAdapter.notifyDataSetChanged();
+        if (!mBancaAdapter.equals(list))
+        {
+            mBancaAdapter.clear();
+            mBancaAdapter.addAll(list);
+            mBancaAdapter.cleanAlphabeticIndex();
+            mBancaAdapter.notifyDataSetChanged();
+        }
     }
 
     private void showProgress(boolean show) {
