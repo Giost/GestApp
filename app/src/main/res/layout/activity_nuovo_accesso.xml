@@ -101,10 +101,11 @@
                     android:layout_marginRight="10dp" />
 
                 <EditText
+                    android:id="@+id/nuovo_accesso_password"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/nuovo_accesso_password"
-                    android:hint="Password" />
+                    android:hint="Password"
+                    android:inputType="textPassword" />
             </LinearLayout>
 
             <LinearLayout
