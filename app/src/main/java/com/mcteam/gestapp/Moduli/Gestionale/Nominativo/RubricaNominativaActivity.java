@@ -362,11 +362,15 @@ public class RubricaNominativaActivity extends AppCompatActivity {
 
     private void updateList(ArrayList<Nominativo> list) {
         showProgress(false);
-        mRubricaNominativo.clear();
-        mRubricaNominativo.addAll(list);
-        Collections.sort(mRubricaNominativo, nominativoComparator);
-        mRubricaAdapter.cleanAlphabeticIndex();
-        mRubricaAdapter.notifyDataSetChanged();
+        Collections.sort(list, nominativoComparator);
+        if (!mRubricaNominativo.equals(list))
+        {
+            mRubricaNominativo.clear();
+            mRubricaNominativo.addAll(list);
+            mRubricaAdapter.cleanAlphabeticIndex();
+            mRubricaAdapter.notifyDataSetChanged();
+            mRubricaListaView.setSelectionAfterHeaderView();
+        }
     }
 
     //Nascondere o meno ListView e ProgressBar

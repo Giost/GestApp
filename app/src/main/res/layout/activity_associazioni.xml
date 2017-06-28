@@ -14,8 +14,7 @@
         android:background="@color/gestionale_home_background"
         android:id="@+id/linearLayout8"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="4dp">
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="105dp"

@@ -351,12 +351,15 @@ public class RubricaSocietaActivity extends AppCompatActivity {
 
     private void updateList(ArrayList<Societa> list) {
         showProgress(false);
-        mRubricaSocieta.clear();
-        mRubricaSocieta.addAll(list);
-        Collections.sort(mRubricaSocieta, societaComparator);
-        mRubricaAdapter.clearAlphabeticIndex();
-        mRubricaAdapter.notifyDataSetChanged();
-
+        Collections.sort(list, societaComparator);
+        if (!mRubricaSocieta.equals(list))
+        {
+            mRubricaSocieta.clear();
+            mRubricaSocieta.addAll(list);
+            mRubricaAdapter.clearAlphabeticIndex();
+            mRubricaAdapter.notifyDataSetChanged();
+            mRubricaListaView.setSelectionAfterHeaderView();
+        }
     }
 
 
