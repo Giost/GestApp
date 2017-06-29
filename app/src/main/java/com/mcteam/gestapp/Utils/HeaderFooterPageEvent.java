@@ -43,7 +43,7 @@ public class HeaderFooterPageEvent extends PdfPageEventHelper {
     }
 
     public void setImage(Context mContext) {
-        Drawable logo = mContext.getResources().getDrawable(R.drawable.ic_mcteamlogo);
+        Drawable logo = mContext.getResources().getDrawable(R.drawable.ic_gestapp_better);
         try {
             // get input stream
             Bitmap bmp = ((BitmapDrawable) logo).getBitmap();
@@ -78,7 +78,7 @@ public class HeaderFooterPageEvent extends PdfPageEventHelper {
         myTable.setTotalWidth(700);
 
         PdfPCell logo = new PdfPCell(mLogo);
-        PdfPCell cellTwo = new PdfPCell(new Paragraph("Gesteam", tableTitleFond));
+        PdfPCell cellTwo = new PdfPCell(new Paragraph("GestApp", tableTitleFond));
         cellTwo.setHorizontalAlignment(Element.ALIGN_LEFT);
 
         PdfPCell title = new PdfPCell(new Paragraph(mTitle.toUpperCase(), tableTitleFond));
