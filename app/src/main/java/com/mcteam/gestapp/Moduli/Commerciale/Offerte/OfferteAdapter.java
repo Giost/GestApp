@@ -21,7 +21,7 @@ public class OfferteAdapter extends RecyclerView.Adapter<OfferteAdapter.MyViewHo
 
     private ArrayList<Commessa> items;
     private OnItemClickListener listener;
-    private HashMap<Character, Integer> mAlphaIndex = new HashMap<>();
+    private HashMap<Character, Integer> mAlphabeticIndex = new HashMap<>();
 
     public interface OnItemClickListener {
         void onItemClick(Commessa item);
@@ -30,6 +30,10 @@ public class OfferteAdapter extends RecyclerView.Adapter<OfferteAdapter.MyViewHo
     public OfferteAdapter(ArrayList<Commessa> items, OnItemClickListener listener) {
         this.items = items;
         this.listener = listener;
+    }
+
+    public void clearAlphabeticIndex() {
+        mAlphabeticIndex.clear();
     }
 
     @Override
@@ -71,11 +75,11 @@ public class OfferteAdapter extends RecyclerView.Adapter<OfferteAdapter.MyViewHo
         public void bind(final Commessa commessa, final OnItemClickListener listener, int position) {
             Character firstChar = commessa.getCliente().getNomeSocietà().toUpperCase().charAt(0);
 
-            if(!mAlphaIndex.containsKey(firstChar) || mAlphaIndex.get(firstChar) == position) {
+            if(!mAlphabeticIndex.containsKey(firstChar) || mAlphabeticIndex.get(firstChar) == position) {
                 header.setText(String.valueOf(firstChar));
                 header.setVisibility(View.VISIBLE);
-                if(mAlphaIndex.get(firstChar) == null)
-                    mAlphaIndex.put(firstChar, position);
+                if(mAlphabeticIndex.get(firstChar) == null)
+                    mAlphabeticIndex.put(firstChar, position);
             }
             else
                 header.setVisibility(View.GONE);

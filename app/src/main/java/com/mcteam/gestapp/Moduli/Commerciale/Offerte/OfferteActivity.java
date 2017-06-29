@@ -14,6 +14,8 @@ import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.NetworkReq.VolleyRequests;
@@ -30,6 +32,7 @@ public class OfferteActivity extends AppCompatActivity {
     private RecyclerView mOffRecyclerView;
     private OfferteAdapter mAdapter;
     private VolleyRequests mVolleyRequests;
+    private ProgressBar mProgressBar;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -64,18 +67,32 @@ public class OfferteActivity extends AppCompatActivity {
 
         mOffRecyclerView.setAdapter(mAdapter);
 
+        mProgressBar = (ProgressBar) findViewById(R.id.offerte_progress);
+        mVolleyRequests.getCommesseList();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        showProgress(true);
         mVolleyRequests.getCommesseList();
     }
 
     // FromVolleyRequest indica se la richiesta di aggiornamento lista è stata fatta dopo una richiesta al db (Volley)
     public void updateList(ArrayList<Commessa> list, boolean fromVolleyRequest) {
-        //showProgress(false);
+        showProgress(false);
         Collections.sort(list, ComparatorPool.getCommessaComparator());
-        mCommArrList.clear();
-        mCommArrList.addAll(list);
-        mAdapter.notifyDataSetChanged();
-        if (fromVolleyRequest) //Aggiorna solo se richiesta fatta da una volley
-            mCommArrListO.addAll(list);
+        if (!mCommArrList.equals(list))
+        {
+            mCommArrList.clear();
+            mCommArrList.addAll(list);
+            mAdapter.notifyDataSetChanged();
+            mAdapter.clearAlphabeticIndex();
+            mOffRecyclerView.scrollToPosition(0);
+            if (fromVolleyRequest) //Aggiorna solo se richiesta fatta da una volley
+                mCommArrListO.addAll(list);
+        }
     }
 
     @Override
@@ -134,6 +151,16 @@ public class OfferteActivity extends AppCompatActivity {
         } else
             updateList(mCommArrListO, false);
 
+    }
+
+    private void showProgress(boolean show) {
+        if (show) {
+            mOffRecyclerView.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.VISIBLE);
+        } else {
+            mOffRecyclerView.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
+        }
     }
 
 }
