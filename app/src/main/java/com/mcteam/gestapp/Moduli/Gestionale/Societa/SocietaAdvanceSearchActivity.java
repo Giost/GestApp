@@ -102,7 +102,9 @@ public class SocietaAdvanceSearchActivity extends AppCompatActivity {
 
         mResulList.setAdapter(mListAdapter);
     }
-
+    /**
+    * Metodo per la ricerca degli elementi
+    */
     private void cerca() {
 
         String nomeSocieta = mSocieta.getText().toString();
@@ -110,7 +112,7 @@ public class SocietaAdvanceSearchActivity extends AppCompatActivity {
         String citta = mCitta.getText().toString();
 
         ArrayList<Societa> matchingElement = new ArrayList<>();
-
+        // Se è stata inserita sia una città che un nome nella ricerca, il confronto viene fatto per tutti e due i campi
         if (!TextUtils.isEmpty(citta) && !TextUtils.isEmpty(nomeSocieta)) {
             for (Societa societa : mSearchList) {
                 if ((societa.getNomeSocietà().toUpperCase().contains(nomeSocieta.toUpperCase()) && societa.getmCitta().toUpperCase().contains(citta.toUpperCase()))) {
@@ -119,21 +121,21 @@ public class SocietaAdvanceSearchActivity extends AppCompatActivity {
             }
             String[] dati = {nomeSocieta, citta};
             updateList(matchingElement, dati);
-        } else if (!TextUtils.isEmpty(citta)) {
+        } else if (!TextUtils.isEmpty(citta)) { // Confronta solo la città
             for (Societa societa : mSearchList) {
                 if (societa.getmCitta().toUpperCase().contains(citta.toUpperCase())) {
                     matchingElement.add(societa);
                 }
             }
             updateList(matchingElement, citta);
-        } else if (!TextUtils.isEmpty(nomeSocieta)) {
+        } else if (!TextUtils.isEmpty(nomeSocieta)) { // Confronta solo il nome della società
             for (Societa societa : mSearchList) {
                 if (societa.getNomeSocietà().toUpperCase().contains(nomeSocieta.toUpperCase())) {
                     matchingElement.add(societa);
                 }
             }
             updateList(matchingElement, nomeSocieta);
-        } else if (TextUtils.isEmpty(citta) && TextUtils.isEmpty(nomeSocieta)) {
+        } else if (TextUtils.isEmpty(citta) && TextUtils.isEmpty(nomeSocieta)) { // Ripristina tutti gli elementi nella visualizzazione
             updateList(mSearchList);
         }
     }
