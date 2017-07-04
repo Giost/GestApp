@@ -88,7 +88,7 @@ public class RubricaSocietaActivity extends AppCompatActivity {
             getSupportActionBar().setBackgroundDrawable(actionBarBack);
             getSupportActionBar().setIcon(R.drawable.ic_accessibility_white_24dp);
         }
-
+        //Comparatore per ordine alfabetico del nome della società
         societaComparator = new Comparator<Societa>() {
             @Override
             public int compare(Societa lhs, Societa rhs) {
@@ -232,7 +232,9 @@ public class RubricaSocietaActivity extends AppCompatActivity {
         return true;
     }
 
-
+    /**
+    * Metodo per la ricerca della query passata tra gli elementi
+    */
     private void simpleSearch(String query) {
         ArrayList<Societa> matchingElement = new ArrayList<>();
         if (!TextUtils.isEmpty(query)) {
@@ -261,21 +263,27 @@ public class RubricaSocietaActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    /**
+    * Metodo per fare il logout, si viene mandati alla pagina di login
+    */
     private void logout() {
         Intent goLogin = new Intent(this, LoginActivity.class);
         goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(goLogin);
         finish();
     }
-
+    /**
+    * Metodo per tornare alla home
+    */
     private void goHome() {
         Intent goHome = new Intent(this, HomeActivity.class);
         goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(goHome);
         finish();
     }
-
+    /**
+    * Metodo per la richiesta al database dei record presetni nella tabella "rubrica societa"
+    */
     public void getRubricaList() {
         String url = getString(R.string.mobile_url);
         url += "rubrica-societa";
@@ -293,7 +301,10 @@ public class RubricaSocietaActivity extends AppCompatActivity {
 
         mRequestQueue.add(accessiRequest);
     }
-
+    /**
+    * Classe che implementa il Response listener, cioè viene richiamata quando viene ricevuta una risposta ad una
+    * richiesta fatta precedentemente, nel nostro caso, la database
+    */
     public class RubricaResponse implements Response.Listener<JSONArray> {
 
         @Override
@@ -348,7 +359,10 @@ public class RubricaSocietaActivity extends AppCompatActivity {
         getRubricaList();
         fabMenu.collapse();
     }
-
+    /**
+    * Metodo richiamato ad ogni caricamento della ListView ed in ogni caso in cui la lista degli elementi da 
+    * visualizzare cambia
+    */
     private void updateList(ArrayList<Societa> list) {
         showProgress(false);
         Collections.sort(list, societaComparator);
@@ -362,7 +376,7 @@ public class RubricaSocietaActivity extends AppCompatActivity {
         }
     }
 
-
+    
     public void esportaExcel() throws Exception {
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/GestApp/societa/excel");
 
@@ -470,7 +484,9 @@ public class RubricaSocietaActivity extends AppCompatActivity {
             Toast.makeText(this, "No Application Available to View Excel", Toast.LENGTH_SHORT).show();
         }
     }
-
+    /**
+    * Metodo per la gestione della rotella di caricamento
+    */
     private void showProgress(boolean show) {
         if (show) {
             mRubricaListaView.setVisibility(View.GONE);
