@@ -33,7 +33,10 @@ public class RubricaSocietaListAdapter extends ArrayAdapter<Societa> {
         mRubrica.clear();
         mRubrica.addAll(rubrica);
     }
-
+    /**
+    * Azzera la suddivisione in lettere, deve essere richiamato prima di ogni notifyDataChanged, cioè
+    * prima di ogni ricaricamento della ListView
+    */
     public void clearAlphabeticIndex() {
         mAlphabeticIndex.clear();
     }
@@ -49,6 +52,7 @@ public class RubricaSocietaListAdapter extends ArrayAdapter<Societa> {
         String iniziale = nome.substring(0, 1);
 
         iniziale = iniziale.toUpperCase(Locale.ITALIAN);
+        // Se è il primo ad iniziare con questa lettera, viene aggiunta quest'ultima e la posizione in mAlphabeticIndex
         if (!mAlphabeticIndex.containsKey(iniziale))
             mAlphabeticIndex.put(iniziale, position);
 
@@ -73,7 +77,8 @@ public class RubricaSocietaListAdapter extends ArrayAdapter<Societa> {
         //}else {
         //  holder = (ViewHolder)convertView.getTag();
         //}
-
+        
+        // Se è appena stata aggiunta l'iniziale ad mAlphabeticIndex, sopra questo elemento viene visualizzata l'iniziale 
         if (mAlphabeticIndex.containsValue(position)) {
             txtHeader.setText(iniziale);
         } else {
