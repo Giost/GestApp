@@ -33,7 +33,10 @@ public class RubricaNominativaListAdapter extends ArrayAdapter<Nominativo> {
         mRubrica = rubrica;
         mUser = user;
     }
-
+    /**
+     * Azzera la suddivisione in lettere, deve essere richiamato prima di ogni notifyDataChanged, cioè
+     * prima di ogni ricaricamento della ListView
+     */
     public void cleanAlphabeticIndex() {
         mAlphabeticIndex.clear();
     }

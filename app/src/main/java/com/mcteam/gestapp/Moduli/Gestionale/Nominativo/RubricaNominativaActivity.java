@@ -80,7 +80,7 @@ public class RubricaNominativaActivity extends AppCompatActivity {
             getSupportActionBar().setBackgroundDrawable(actionBarBack);
             getSupportActionBar().setIcon(R.drawable.ic_accessibility_white_24dp);
         }
-
+        //Comparatore per ordine alfabetico del cognome
         nominativoComparator = new Comparator<Nominativo>() {
             @Override
             public int compare(Nominativo lhs, Nominativo rhs) {
@@ -199,7 +199,9 @@ public class RubricaNominativaActivity extends AppCompatActivity {
         getRubricaList();
         mMenu.collapse();
     }
-
+    /**
+     * Metodo per la richiesta al database dei record presenti nella tabella "rubrica nominativi"
+     */
     public void getRubricaList() {
         String url = getString(R.string.mobile_url);
         url += "rubrica-nominativi";
@@ -272,7 +274,9 @@ public class RubricaNominativaActivity extends AppCompatActivity {
         startActivity(goHome);
         finish();
     }
-
+    /**
+     * Metodo per la ricerca della query passata tra gli elementi
+     */
     private void simpleSearch(String query) {
         ArrayList<Nominativo> matchingElement = new ArrayList<>();
         if (!TextUtils.isEmpty(query)) {
@@ -294,7 +298,10 @@ public class RubricaNominativaActivity extends AppCompatActivity {
         } else
             updateList(mOriginalList);
     }
-
+    /**
+     * Classe che implementa il Response listener, cioè viene richiamata quando viene ricevuta una risposta ad una
+     * richiesta fatta precedentemente, nel nostro caso, al database
+     */
     public class RubricaResponse implements Response.Listener<JSONArray> {
 
         Gson gson = new Gson();
@@ -359,7 +366,10 @@ public class RubricaNominativaActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * Metodo richiamato ad ogni caricamento della ListView ed in ogni caso in cui la lista degli elementi da
+     * visualizzare cambia
+     */
     private void updateList(ArrayList<Nominativo> list) {
         showProgress(false);
         Collections.sort(list, nominativoComparator);
@@ -373,7 +383,9 @@ public class RubricaNominativaActivity extends AppCompatActivity {
         }
     }
 
-    //Nascondere o meno ListView e ProgressBar
+    /**
+     * Metodo per la gestione della rotella di caricamento
+     */
     private void showProgress(boolean show) {
         if (show) {
             mRubricaListaView.setVisibility(View.GONE);

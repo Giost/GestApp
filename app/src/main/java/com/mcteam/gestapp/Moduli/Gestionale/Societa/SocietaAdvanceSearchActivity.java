@@ -55,7 +55,7 @@ public class SocietaAdvanceSearchActivity extends AppCompatActivity {
         }
 
         mResulList = (ListView) findViewById(R.id.societa_ricerca_avanzata_lista);
-
+        //Comparatore per ordine alfabetico del nome della società
         surnameSortingComparator =
                 new Comparator<Societa>() {
                     @Override

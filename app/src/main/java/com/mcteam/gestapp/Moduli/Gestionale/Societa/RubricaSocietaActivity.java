@@ -282,7 +282,7 @@ public class RubricaSocietaActivity extends AppCompatActivity {
         finish();
     }
     /**
-    * Metodo per la richiesta al database dei record presetni nella tabella "rubrica societa"
+    * Metodo per la richiesta al database dei record presenti nella tabella "rubrica societa"
     */
     public void getRubricaList() {
         String url = getString(R.string.mobile_url);
@@ -303,7 +303,7 @@ public class RubricaSocietaActivity extends AppCompatActivity {
     }
     /**
     * Classe che implementa il Response listener, cioè viene richiamata quando viene ricevuta una risposta ad una
-    * richiesta fatta precedentemente, nel nostro caso, la database
+    * richiesta fatta precedentemente, nel nostro caso, al database
     */
     public class RubricaResponse implements Response.Listener<JSONArray> {
 

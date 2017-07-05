@@ -458,6 +458,10 @@ public class ModificaNominativoActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Metodo che fa il SELECT di tutti i record della tabella "rubrica societa", perchè devono
+     * essere mostrate nel menù a tendina
+     */
     public void getRubricaList() {
         String url = getString(R.string.mobile_url);
         url += "rubrica-societa";

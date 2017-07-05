@@ -61,7 +61,7 @@ public class NominativiAdvanceSearch extends AppCompatActivity {
         actualUser = intent.getParcelableExtra("actualUser");
 
         mResulList = (ListView) findViewById(R.id.nominativo_ricerca_avanzata_lista_risultato);
-
+        //Comparatore per ordine alfabetico del cognome
         surnameSortingComparator = new Comparator<Nominativo>() {
             @Override
             public int compare(Nominativo lhs, Nominativo rhs) {
@@ -106,7 +106,9 @@ public class NominativiAdvanceSearch extends AppCompatActivity {
 
         mResulList.setAdapter(mListAdapter);
     }
-
+    /**
+     * Metodo per la ricerca degli elementi
+     */
     private void cerca() {
 
         String nomeSocieta = mSocieta.getText().toString();
@@ -132,7 +134,7 @@ public class NominativiAdvanceSearch extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(nome)) {
             if (!TextUtils.isEmpty(nomeSocieta)) {
-                if (!TextUtils.isEmpty(cognome)) {
+                if (!TextUtils.isEmpty(cognome)) { // Ricerca per cognome, nome e società
                     for (Nominativo nominativo : mSearchList) {
                         if (nominativo.getSocieta() == null || nominativo.getSocieta().getNomeSocietà() == null)
                             continue;
@@ -140,8 +142,8 @@ public class NominativiAdvanceSearch extends AppCompatActivity {
                             matchingElement.add(nominativo);
                         }
                     }
-                }//cognome != isEmpty
-                else {
+                }
+                else { // Ricerca per nome e società
                     for (Nominativo nominativo : mSearchList) {
                         if (nominativo.getSocieta() == null || nominativo.getSocieta().getNomeSocietà() == null)
                             continue;
@@ -149,10 +151,10 @@ public class NominativiAdvanceSearch extends AppCompatActivity {
                             matchingElement.add(nominativo);
                         }
                     }
-                }//cognome isEmpty
-            }// nomesocietà != isEmpty
+                }
+            }
             else {
-                if (!TextUtils.isEmpty(cognome)) {
+                if (!TextUtils.isEmpty(cognome)) { // Ricerca per cognome, nome e società
                     for (Nominativo nominativo : mSearchList) {
                         if (nominativo.getSocieta() == null || nominativo.getSocieta().getNomeSocietà() == null)
                             continue;
@@ -160,17 +162,17 @@ public class NominativiAdvanceSearch extends AppCompatActivity {
                             matchingElement.add(nominativo);
                         }
                     }
-                } else {
+                } else { // Ricerca per nome
                     for (Nominativo nominativo : mSearchList) {
                         if (nominativo.getNome().toUpperCase().contains(nome)) {
                             matchingElement.add(nominativo);
                         }
                     }
                 }
-            } // nomeSocietà isEmpty
+            }
 
         } else if (!TextUtils.isEmpty(cognome)) {
-            if (!TextUtils.isEmpty(nomeSocieta)) {
+            if (!TextUtils.isEmpty(nomeSocieta)) { // Ricerca per cognome e società
                 for (Nominativo nominativo : mSearchList) {
                     if (nominativo.getSocieta() == null || nominativo.getSocieta().getNomeSocietà() == null)
                         continue;
@@ -178,14 +180,14 @@ public class NominativiAdvanceSearch extends AppCompatActivity {
                         matchingElement.add(nominativo);
                     }
                 }
-            } else {
+            } else { // Ricerca per cognome
                 for (Nominativo nominativo : mSearchList) {
                     if (nominativo.getCognome().toUpperCase().contains(cognome)) {
                         matchingElement.add(nominativo);
                     }
                 }
             }
-        } else if (!TextUtils.isEmpty(nomeSocieta)) {
+        } else if (!TextUtils.isEmpty(nomeSocieta)) { // Ricerca per società
             for (Nominativo nominativo : mSearchList) {
                 if (nominativo.getSocieta() == null || nominativo.getSocieta().getNomeSocietà() == null)
                     continue;
