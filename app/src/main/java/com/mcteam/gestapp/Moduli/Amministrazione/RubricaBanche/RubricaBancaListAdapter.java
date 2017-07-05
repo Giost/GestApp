@@ -32,7 +32,10 @@ public class RubricaBancaListAdapter extends ArrayAdapter<Banca> {
         mBancheList = rubrica;
         mContext = context;
     }
-
+    /**
+     * Azzera la suddivisione in lettere, deve essere richiamato prima di ogni notifyDataChanged, cioè
+     * prima di ogni ricaricamento della ListView
+     */
     public void cleanAlphabeticIndex() {
         mAlphabeticIndex.clear();
     }

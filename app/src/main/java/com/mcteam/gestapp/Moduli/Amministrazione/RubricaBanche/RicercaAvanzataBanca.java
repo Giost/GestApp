@@ -76,7 +76,7 @@ public class RicercaAvanzataBanca extends AppCompatActivity {
                 search();
             }
         });
-
+        //Comparatore per ordine alfabetico del nome
         bancaComparator = new Comparator<Banca>() {
             @Override
             public int compare(Banca lhs, Banca rhs) {
@@ -112,13 +112,13 @@ public class RicercaAvanzataBanca extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(nome)) {
             if (!TextUtils.isEmpty(indirizzo)) {
-                if (!TextUtils.isEmpty(iban)) {
+                if (!TextUtils.isEmpty(iban)) { // Ricerca per nome, indirizzo e iban
                     for (Banca banca : mOriginalList) {
                         if ((banca.getNome().toUpperCase().contains(nome) && banca.getIndirizzo().toUpperCase().contains(indirizzo) && banca.getIban().toUpperCase().contains(iban))) {
                             matchingElement.add(banca);
                         }
                     }
-                } else {
+                } else { // Ricerca per nome e indirizzo
                     for (Banca banca : mOriginalList) {
                         if ((banca.getNome().toUpperCase().contains(nome) && banca.getIndirizzo().toUpperCase().contains(indirizzo))) {
                             matchingElement.add(banca);
@@ -126,7 +126,7 @@ public class RicercaAvanzataBanca extends AppCompatActivity {
                     }
 
                 }
-            } else {
+            } else { // Ricerca per nome
                 for (Banca banca : mOriginalList) {
                     if ((banca.getNome().toUpperCase().contains(nome))) {
                         matchingElement.add(banca);
@@ -134,20 +134,20 @@ public class RicercaAvanzataBanca extends AppCompatActivity {
                 }
             }
         } else if (!TextUtils.isEmpty(indirizzo)) {
-            if (!TextUtils.isEmpty(iban)) {
+            if (!TextUtils.isEmpty(iban)) { // Ricerca per indirizzo e iban
                 for (Banca banca : mOriginalList) {
                     if ((banca.getIndirizzo().toUpperCase().contains(indirizzo) && banca.getIban().toUpperCase().contains(iban))) {
                         matchingElement.add(banca);
                     }
                 }
-            } else {
+            } else { // Ricerca per indirizzo
                 for (Banca banca : mOriginalList) {
                     if ((banca.getIndirizzo().toUpperCase().contains(indirizzo))) {
                         matchingElement.add(banca);
                     }
                 }
             }
-        } else if (!TextUtils.isEmpty(iban)) {
+        } else if (!TextUtils.isEmpty(iban)) { // Ricerca per indirizzo
             for (Banca banca : mOriginalList) {
                 if ((banca.getIndirizzo().toUpperCase().contains(indirizzo))) {
                     matchingElement.add(banca);

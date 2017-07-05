@@ -107,7 +107,7 @@ public class RubricaBanca extends AppCompatActivity {
         });
 
         //***********************************************************************
-        //Comparatore per ordinare la lista
+        //Comparatore per nome per ordinare la lista
         //************************************************************************
 
         bancaComparator = new Comparator<Banca>() {
@@ -173,7 +173,9 @@ public class RubricaBanca extends AppCompatActivity {
         getBancheList();
 
     }
-
+    /**
+     * Metodo per la richiesta al database dei record presenti nella tabella "banche"
+     */
     void getBancheList() {
         String url = getString(R.string.mobile_url);
         url += "banche";
@@ -191,7 +193,10 @@ public class RubricaBanca extends AppCompatActivity {
 
         mRequestQueue.add(accessiRequest);
     }
-
+    /**
+     * Classe che implementa il Response listener, cioè viene richiamata quando viene ricevuta una risposta ad una
+     * richiesta fatta precedentemente, nel nostro caso, al database
+     */
     public class RubricaResponse implements Response.Listener<JSONArray> {
 
         Gson gson = new Gson();
@@ -225,7 +230,10 @@ public class RubricaBanca extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * Metodo richiamato ad ogni caricamento della ListView ed in ogni caso in cui la lista degli elementi da
+     * visualizzare cambia
+     */
     private void updateList(ArrayList<Banca> list) {
         showProgress(false);
         Collections.sort(list, bancaComparator);
@@ -237,7 +245,9 @@ public class RubricaBanca extends AppCompatActivity {
             mBancaAdapter.notifyDataSetChanged();
         }
     }
-
+    /**
+     * Metodo per la gestione della rotella di caricamento
+     */
     private void showProgress(boolean show) {
         if (show) {
             mBancheListView.setVisibility(View.GONE);
@@ -306,7 +316,9 @@ public class RubricaBanca extends AppCompatActivity {
         startActivity(goHome);
         finish();
     }
-
+    /**
+     * Metodo per la ricerca della query passata tra gli elementi
+     */
     private void simpleSearch(String query) {
 
         ArrayList<Banca> matchingElement = new ArrayList<>();
