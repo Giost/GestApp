@@ -188,7 +188,9 @@ public class StoricoCommesseActivity extends AppCompatActivity {
 
 
     }
-
+    /**
+     * Metodo per la richiesta al database dei record presenti nella tabella "commesse storico"
+     */
     public void getRubricaList() {
         String url = getString(R.string.mobile_url);
         url += "storico-commesse";
@@ -206,7 +208,10 @@ public class StoricoCommesseActivity extends AppCompatActivity {
 
         mRequestQueue.add(accessiRequest);
     }
-
+    /**
+     * Classe che implementa il Response listener, cioè viene richiamata quando viene ricevuta una risposta ad una
+     * richiesta fatta precedentemente, nel nostro caso, al database
+     */
     public class RubricaResponse implements Response.Listener<JSONArray> {
 
         Gson gson = new Gson();
@@ -240,7 +245,10 @@ public class StoricoCommesseActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * Metodo richiamato ad ogni caricamento della ListView ed in ogni caso in cui la lista degli elementi da
+     * visualizzare cambia
+     */
     private void updateList(ArrayList<Commessa> list) {
         showProgress(false);
         Collections.sort(list, commessaComparator);
@@ -248,7 +256,9 @@ public class StoricoCommesseActivity extends AppCompatActivity {
         mCommesseList.addAll(list);
         mCommesseListAdapter.notifyDataSetChanged();
     }
-
+    /**
+     * Metodo per la gestione della rotella di caricamento
+     */
     private void showProgress(boolean show) {
         if (show) {
             mCommesseListView.setVisibility(View.GONE);
@@ -316,7 +326,9 @@ public class StoricoCommesseActivity extends AppCompatActivity {
         startActivity(goHome);
         finish();
     }
-
+    /**
+     * Metodo per la ricerca della query passata tra gli elementi
+     */
     private void simpleSearch(String query) {
         ArrayList<Commessa> matchingElement = new ArrayList<>();
         if (!TextUtils.isEmpty(query)) {

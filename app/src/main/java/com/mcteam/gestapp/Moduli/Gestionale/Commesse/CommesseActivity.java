@@ -205,7 +205,9 @@ public class CommesseActivity extends AppCompatActivity {
 
 
     }
-
+    /**
+     * Metodo per la richiesta al database dei record presenti nella tabella "commesse"
+     */
     public void getRubricaList() {
         String url = getString(R.string.mobile_url);
         url += "commesse";
@@ -223,7 +225,10 @@ public class CommesseActivity extends AppCompatActivity {
 
         mRequestQueue.add(accessiRequest);
     }
-
+    /**
+     * Classe che implementa il Response listener, cioè viene richiamata quando viene ricevuta una risposta ad una
+     * richiesta fatta precedentemente, nel nostro caso, al database
+     */
     public class RubricaResponse implements Response.Listener<JSONArray> {
 
         Gson gson = new Gson();
@@ -258,7 +263,10 @@ public class CommesseActivity extends AppCompatActivity {
             }
         }
     }
-
+    /**
+     * Metodo richiamato ad ogni caricamento della ListView ed in ogni caso in cui la lista degli elementi da
+     * visualizzare cambia
+     */
     public void updateList(ArrayList<Commessa> list) {
         showProgress(false);
         Collections.sort(list, ComparatorPool.getCommessaComparator());
@@ -275,7 +283,9 @@ public class CommesseActivity extends AppCompatActivity {
     public void updateOriginalList(ArrayList<Commessa> newList) {
         mOriginalList = newList;
     }
-
+    /**
+     * Metodo per la gestione della rotella di caricamento
+     */
     private void showProgress(boolean show) {
         if (show) {
             mCommesseListView.setVisibility(View.GONE);
@@ -344,7 +354,9 @@ public class CommesseActivity extends AppCompatActivity {
         startActivity(goHome);
         finish();
     }
-
+    /**
+     * Metodo per la ricerca della query passata tra gli elementi
+     */
     private void simpleSearch(String query) {
         ArrayList<Commessa> matchingElement = new ArrayList<>();
         if (!TextUtils.isEmpty(query)) {

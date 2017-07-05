@@ -148,7 +148,9 @@ public class RicercaAvanzataCommesseActivity extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * Metodo per la ricerca degli elementi
+     */
     private void advanceSearch() {
         String codice = null,
                 nomeCommessa = null,
@@ -185,7 +187,7 @@ public class RicercaAvanzataCommesseActivity extends AppCompatActivity {
 
         ArrayList<Commessa> tempResult;
 
-        if (!TextUtils.isEmpty(codice)) {
+        if (!TextUtils.isEmpty(codice)) { // Ricerca per codice
             tempResult = new ArrayList<>();
             for (Commessa commessa : mOriginalList) {
                 if (commessa.getCodice_commessa().toUpperCase().contains(codice)) {
@@ -197,7 +199,7 @@ public class RicercaAvanzataCommesseActivity extends AppCompatActivity {
 
         }
 
-        if (!TextUtils.isEmpty(nomeCommessa)) {
+        if (!TextUtils.isEmpty(nomeCommessa)) { // Ricerca per nome commessa
             tempResult = new ArrayList<>();
             for (Commessa commessa : mOriginalList) {
 
@@ -210,7 +212,7 @@ public class RicercaAvanzataCommesseActivity extends AppCompatActivity {
             commesseSetResult = (ArrayList) Functions.union(commesseSetResult, tempResult);
         }
 
-        if (!TextUtils.isEmpty(cliente)) {
+        if (!TextUtils.isEmpty(cliente)) { // Ricerca per nome cliente
             tempResult = new ArrayList<>();
             for (Commessa commessa : mOriginalList) {
 
@@ -226,7 +228,7 @@ public class RicercaAvanzataCommesseActivity extends AppCompatActivity {
         }
 
 
-        if (!TextUtils.isEmpty(inputReferente1)) {
+        if (!TextUtils.isEmpty(inputReferente1)) { // Ricerca per nome e cognome referente 1
             tempResult = new ArrayList<>();
             for (Commessa commessa : mOriginalList) {
                 if (commessa.getReferente1() != null) {
@@ -246,7 +248,7 @@ public class RicercaAvanzataCommesseActivity extends AppCompatActivity {
         }
 
 
-        if (!TextUtils.isEmpty(inputReferente2)) {
+        if (!TextUtils.isEmpty(inputReferente2)) { // Ricerca per cognome e nome referente 1
             tempResult = new ArrayList<>();
             for (Commessa commessa : mOriginalList) {
 
@@ -266,7 +268,7 @@ public class RicercaAvanzataCommesseActivity extends AppCompatActivity {
         }
 
 
-        if (!TextUtils.isEmpty(selectedAvanzamento)) {
+        if (!TextUtils.isEmpty(selectedAvanzamento)) { // Ricerca per avanzamento
             tempResult = new ArrayList<>();
             for (Commessa commessa : mOriginalList) {
 

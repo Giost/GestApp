@@ -31,7 +31,10 @@ public class CommesseListAdapter extends ArrayAdapter<Commessa> {
         mRubrica = rubrica;
         isStorico = storico;
     }
-
+    /**
+     * Azzera la suddivisione in lettere, deve essere richiamato prima di ogni notifyDataChanged, cioè
+     * prima di ogni ricaricamento della ListView
+     */
     public void clearAlphabeticIndex() {
         mAlphabeticIndex.clear();
     }
