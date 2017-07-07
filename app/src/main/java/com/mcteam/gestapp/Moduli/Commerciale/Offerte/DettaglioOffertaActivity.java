@@ -112,6 +112,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
 
     private void emptyMode(boolean enabled) {
         LinearLayout emptyLayout = (LinearLayout) findViewById(R.id.dettaglio_offerta_empty);
+        FloatingActionButton fabMenu = (FloatingActionButton) findViewById(R.id.fabmenu_offerta);
         FloatingActionButton fabSearch = (FloatingActionButton) findViewById(R.id.fab_offerta_search);
         FloatingActionButton fabPrint = (FloatingActionButton) findViewById(R.id.fab_offerta_print);
         FloatingActionButton fabExcel = (FloatingActionButton) findViewById(R.id.fab_offerta_excel);
@@ -119,9 +120,10 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         LinearLayout fieldsLayout = (LinearLayout) findViewById(R.id.dettaglio_offerta_fields);
 
         if (enabled) {
+            emptyLayout.setVisibility(View.VISIBLE);
             fabAdd.setVisibility(View.VISIBLE);
         } else {
-            emptyLayout.setVisibility(View.VISIBLE);
+            fabMenu.setVisibility(View.VISIBLE);
             fabSearch.setVisibility(View.VISIBLE);
             fabPrint.setVisibility(View.VISIBLE);
             fabExcel.setVisibility(View.VISIBLE);

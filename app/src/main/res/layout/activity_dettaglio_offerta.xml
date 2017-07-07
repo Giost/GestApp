@@ -219,5 +219,5 @@
         app:fab_colorNormal="@color/sistemi_home_background"
         app:fab_icon="@drawable/ic_add_white_24dp"
         app:fab_size="normal"
-        app:fab_title="Exporta in Excel" />
+        app:fab_title="Crea offerta" />
 </RelativeLayout>
