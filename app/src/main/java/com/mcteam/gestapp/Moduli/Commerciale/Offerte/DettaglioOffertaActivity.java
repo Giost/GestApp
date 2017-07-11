@@ -37,6 +37,8 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
     private RecyclerView mOffRecyclerView;
     private DettaglioOffertaAdapter mOffAdapter;
     private Commessa mCommessa;
+    private View overlay;
+    private FloatingActionsMenu fabMenu;
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -54,6 +56,69 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             Drawable actionBarBack = getDrawable(R.drawable.commerciale_home_background);
             getSupportActionBar().setBackgroundDrawable(actionBarBack);
         }
+
+
+        overlay = findViewById(R.id.offerta_overlay);
+
+        fabMenu = (FloatingActionsMenu) findViewById(R.id.fabmenu_offerta);
+        fabMenu.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                overlay.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                overlay.setVisibility(View.GONE);
+            }
+        });
+
+        overlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fabMenu.collapse();
+            }
+        });
+
+        FloatingActionButton exportaExcel = (FloatingActionButton) findViewById(R.id.fab_offerta_excel);
+        exportaExcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    //esportaExcel();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        FloatingActionButton printAll = (FloatingActionButton) findViewById(R.id.fab_offerta_print);
+        printAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    OfferteUtils.printAll(mOffArrayList,mCommessa,getApplicationContext());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        FloatingActionButton ricercaAvanzata = (FloatingActionButton) findViewById(R.id.fab_offerta_search);
+        ricercaAvanzata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    /*Intent advancedSearch = new Intent(getApplicationContext(), SocietaAdvanceSearchActivity.class);
+                    advancedSearch.putParcelableArrayListExtra("listaSocieta", mRubricaSocieta);
+                    startActivity(advancedSearch);*/
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
         mCommessa = getIntent().getParcelableExtra("COMMESSA");
 
@@ -113,7 +178,6 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
 
     private void emptyMode(boolean enabled) {
         LinearLayout emptyLayout = (LinearLayout) findViewById(R.id.dettaglio_offerta_empty);
-        FloatingActionsMenu fabMenu = (FloatingActionsMenu) findViewById(R.id.fabmenu_offerta);
         /*FloatingActionButton fabSearch = (FloatingActionButton) findViewById(R.id.fab_offerta_search);
         FloatingActionButton fabPrint = (FloatingActionButton) findViewById(R.id.fab_offerta_print);
         FloatingActionButton fabExcel = (FloatingActionButton) findViewById(R.id.fab_offerta_excel);*/

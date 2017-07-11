@@ -162,6 +162,14 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/offerta_overlay"
+        android:background="@color/transparent_white"
+        android:visibility="gone"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/offerte_recycler"
         android:layout_width="match_parent"
