@@ -249,7 +249,7 @@ public class SistemiAcitivity extends AppCompatActivity {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void printAll() throws DocumentException, FileNotFoundException {
-        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/accessiStampa");
+        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/GestApp/accessiStampa/pdf");
 
         File pdf = new File(dir, "accessi.pdf");
 

@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.mcteam.gestapp.Models.Commessa;
+import com.mcteam.gestapp.Moduli.Home.HomeActivity;
+import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.NetworkReq.VolleyRequests;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.Utils.ComparatorPool;
@@ -75,7 +77,6 @@ public class OfferteActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
-        showProgress(true);
         mVolleyRequests.getCommesseList();
     }
 
@@ -151,6 +152,34 @@ public class OfferteActivity extends AppCompatActivity {
         } else
             updateList(mCommArrListO, false);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                goHome();
+                return true;
+            case R.id.action_logout:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void logout() {
+        Intent goLogin = new Intent(this, LoginActivity.class);
+        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goLogin);
+        finish();
+    }
+
+    private void goHome() {
+        Intent goHome = new Intent(this, HomeActivity.class);
+        goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
     }
 
     private void showProgress(boolean show) {

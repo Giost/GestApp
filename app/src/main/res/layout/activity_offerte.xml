@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/offerte_header" />
+        android:layout_below="@+id/offerte_header"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/offerte_header"

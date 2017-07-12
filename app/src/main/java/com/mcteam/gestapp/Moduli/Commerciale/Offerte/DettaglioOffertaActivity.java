@@ -6,11 +6,17 @@ import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -23,6 +29,8 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.gson.Gson;
 import com.mcteam.gestapp.Models.Commerciale.Offerta;
 import com.mcteam.gestapp.Models.Commessa;
+import com.mcteam.gestapp.Moduli.Home.HomeActivity;
+import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.R;
 
 import org.json.JSONArray;
@@ -39,7 +47,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
     private Commessa mCommessa;
     private View overlay;
     private FloatingActionsMenu fabMenu;
-
+    private ProgressBar mProgressBar;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -85,7 +93,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    //esportaExcel();
+                    OfferteUtils.esportaExcel(mOffArrayList,mCommessa,getApplicationContext());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -119,6 +127,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             }
         });
 
+        mProgressBar = (ProgressBar) findViewById(R.id.dettaglio_offerte_progress);
 
         mCommessa = getIntent().getParcelableExtra("COMMESSA");
 
@@ -166,7 +175,87 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         setupHeaderCommessa(mCommessa);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_societa, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_ricerca_semplice);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                simpleSearch(newText);
+                return true;
+            }
+        });
+
+        return true;
+    }
+
+    private void simpleSearch(String query) {
+        ArrayList<Offerta> matchingElement = new ArrayList<>();
+
+        if (!TextUtils.isEmpty(query)) {
+            //query = query.toUpperCase();
+
+            for (Offerta offerta : mOffArrayList) {
+
+                String dataOfferta = "";
+                if (offerta.getDataOfferta() != null && !TextUtils.isEmpty(offerta.getDataOfferta())) {
+                    dataOfferta = offerta.getDataOfferta();
+                }
+
+                String versione = String.valueOf(offerta.getVersione());
+
+                String presentata = String.valueOf(offerta.getAccettata());
+
+                if (dataOfferta.contains(query) || versione.contains(query) || presentata.contains(query)) {
+                    matchingElement.add(offerta);
+                }
+            }
+            /*##### Creare un'altra updateList ######*/
+            updateList(matchingElement);
+        } else
+            updateList(mOffArrayList);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                goHome();
+                return true;
+            case R.id.action_logout:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void logout() {
+        Intent goLogin = new Intent(this, LoginActivity.class);
+        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goLogin);
+        finish();
+    }
+
+    private void goHome() {
+        Intent goHome = new Intent(this, HomeActivity.class);
+        goHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(goHome);
+        finish();
+    }
+
     public void updateList(ArrayList<Offerta> newList) {
+        showProgress(false);
         if (newList.isEmpty())
             emptyMode(true);
         else {
@@ -220,5 +309,21 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), NuovaOffertaActivity.class);
         intent.putExtra("COMMESSA", mCommessa);
         startActivity(intent);
+    }
+
+    private void showProgress(boolean show) {
+        if (show) {
+            mOffRecyclerView.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.VISIBLE);
+        } else {
+            mOffRecyclerView.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fabMenu.collapse();
     }
 }

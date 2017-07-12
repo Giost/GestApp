@@ -106,6 +106,13 @@ public class RubricaBanca extends AppCompatActivity {
             }
         });
 
+        mOverlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMenu.collapse();
+            }
+        });
+
         //***********************************************************************
         //Comparatore per nome per ordinare la lista
         //************************************************************************

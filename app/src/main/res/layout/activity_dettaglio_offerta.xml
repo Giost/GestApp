@@ -162,14 +162,6 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/offerta_overlay"
-        android:background="@color/transparent_white"
-        android:visibility="gone"
-        />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/offerte_recycler"
         android:layout_width="match_parent"
@@ -177,7 +169,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/dettaglio_offerta_empty" />
+        android:layout_below="@+id/dettaglio_offerta_empty"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/offerta_overlay"
+        android:background="@color/transparent_white"
+        android:visibility="gone"
+        />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:visibility="gone"
@@ -228,4 +229,13 @@
         app:fab_icon="@drawable/ic_add_white_24dp"
         app:fab_size="normal"
         app:fab_title="Crea offerta" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dettaglio_offerte_progress"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        android:indeterminate="false" />
 </RelativeLayout>
