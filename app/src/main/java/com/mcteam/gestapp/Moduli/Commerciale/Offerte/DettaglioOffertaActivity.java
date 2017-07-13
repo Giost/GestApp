@@ -38,10 +38,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DettaglioOffertaActivity extends AppCompatActivity {
 
     private ArrayList<Offerta> mOffArrayList;
+    private ArrayList<Offerta> mSearchList;
     private RecyclerView mOffRecyclerView;
     private DettaglioOffertaAdapter mOffAdapter;
     private Commessa mCommessa;
@@ -158,7 +160,8 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
-                        updateList(newList);
+                        mSearchList=newList;
+                        initializeList(newList);
                     }
                 },
                 new Response.ErrorListener() {
@@ -204,7 +207,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(query)) {
             //query = query.toUpperCase();
 
-            for (Offerta offerta : mOffArrayList) {
+            for (Offerta offerta : mSearchList) {
 
                 String dataOfferta = "";
                 if (offerta.getDataOfferta() != null && !TextUtils.isEmpty(offerta.getDataOfferta())) {
@@ -219,10 +222,9 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
                     matchingElement.add(offerta);
                 }
             }
-            /*##### Creare un'altra updateList ######*/
             updateList(matchingElement);
         } else
-            updateList(mOffArrayList);
+            updateList(mSearchList);
 
     }
 
@@ -254,7 +256,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         finish();
     }
 
-    public void updateList(ArrayList<Offerta> newList) {
+    public void initializeList(ArrayList<Offerta> newList) {
         showProgress(false);
         if (newList.isEmpty())
             emptyMode(true);
@@ -262,6 +264,21 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             emptyMode(false);
             mOffArrayList.addAll(newList);
             mOffAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * Metodo richiamato ad ogni caricamento della ListView ed in ogni caso in cui la lista degli elementi da
+     * visualizzare cambia
+     */
+    private void updateList(ArrayList<Offerta> list) {
+        showProgress(false);
+        if (!mOffArrayList.equals(list))
+        {
+            mOffArrayList.clear();
+            mOffArrayList.addAll(list);
+            mOffAdapter.notifyDataSetChanged();
+            mOffRecyclerView.scrollToPosition(0);
         }
     }
 

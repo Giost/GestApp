@@ -13,6 +13,7 @@ import com.mcteam.gestapp.Models.Commerciale.Offerta;
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.Moduli.Gestionale.Allegati.AllegatiUtils;
 import com.mcteam.gestapp.R;
+import com.mcteam.gestapp.Utils.Functions;
 
 import java.util.ArrayList;
 
@@ -73,7 +74,7 @@ public class DettaglioOffertaAdapter extends RecyclerView.Adapter<DettaglioOffer
 
         public void bind(final Offerta offerta) {
             holderVersione.setText(String.valueOf(offerta.getVersione()));
-            holderDataOfferta.setText(String.valueOf(offerta.getDataOfferta()));
+            holderDataOfferta.setText(Functions.getFormattedDate(offerta.getDataOfferta()));
             holderAccettata.setText(String.valueOf(offerta.getAccettata()));
             holderAllegato.setImageBitmap(AllegatiUtils.getAllegatoLogo(activityContext.getResources(), offerta.getAllegato()));
             DettaglioOffertaOverflow listener = new DettaglioOffertaOverflow(offerta, activityContext);
