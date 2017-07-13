@@ -42,7 +42,7 @@ import java.util.ArrayList;
  */
 public class OfferteUtils
 {
-    public static Font tableTitleFond = new Font(Font.FontFamily.UNDEFINED, Font.BOLD);
+    //public static Font tableTitleFond = new Font(Font.FontFamily.UNDEFINED, Font.BOLD);
 
     public static void readFile(Uri path, Context context, String type) {
 
@@ -64,6 +64,8 @@ public class OfferteUtils
 
 
     public static void printAll(ArrayList<Offerta> offerte, Commessa commessa, Context context) throws Exception {
+        Font tableTitleFond = new Font(Font.FontFamily.UNDEFINED, Font.BOLD);
+        Font tableContentFont = new Font(Font.FontFamily.UNDEFINED, Font.BOLD);
 
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/GestApp/offerte/pdf");
 
@@ -71,12 +73,12 @@ public class OfferteUtils
 
         tableTitleFond.setColor(BaseColor.WHITE);
 
-        tableTitleFond.setSize(14);
+        tableTitleFond.setSize(9);
 
         //creazione tabella
         //make them in case they're not there
         dir.mkdirs();
-        Font boldTitle = new Font(Font.FontFamily.HELVETICA, 20f, Font.BOLD);
+        Font boldTitle = new Font(Font.FontFamily.HELVETICA, 15f, Font.BOLD);
         Document pdfToPrint = new Document(PageSize.A4.rotate(), 20, 20, 100, 25);
 
 
@@ -91,7 +93,9 @@ public class OfferteUtils
 
         pdfToPrint.open();
 
-        PdfPTable table = new PdfPTable(11);
+        //PdfPTable table = new PdfPTable(11);
+        PdfPTable table = new PdfPTable(new float[]{12,33,30,35,30,20,30,30,30,20,18});
+        table.setWidthPercentage(100);
 
         PdfPCell c1 = new PdfPCell(new Phrase("Codice", tableTitleFond));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -150,18 +154,21 @@ public class OfferteUtils
 
         table.setHeaderRows(1);
 
+        tableContentFont.setColor(BaseColor.BLACK);
+        tableContentFont.setSize(9);
+
         for (Offerta offerta : offerte) {
-            table.addCell(commessa.getCodice_commessa() == null || commessa.getCodice_commessa().equals("") ? " " : commessa.getCodice_commessa());
-            table.addCell(commessa.getNome_commessa() == null || commessa.getNome_commessa().equals("") ? " " : commessa.getNome_commessa());
-            table.addCell(commessa.getCliente().getNomeSocietà() == null || commessa.getCliente().getNomeSocietà().equals("") ? " " : commessa.getCliente().getNomeSocietà());
-            table.addCell(commessa.getReferente1() == null  ? " " : commessa.getReferente1().getCognome()+" "+commessa.getReferente1().getNome());
-            table.addCell(commessa.getCommerciale() == null  ? " " : commessa.getCommerciale().getCognome()+" "+commessa.getCommerciale().getNome());
-            table.addCell("v_"+String.valueOf(offerta.getVersione()));
-            table.addCell(commessa.getReferente_offerta1() == null  ? " " : commessa.getReferente_offerta1().getCognome()+" "+commessa.getReferente_offerta1().getNome());
-            table.addCell(commessa.getReferente_offerta2() == null  ? " " : commessa.getReferente_offerta2().getCognome()+" "+commessa.getReferente_offerta2().getNome());
-            table.addCell(commessa.getReferente_offerta3() == null  ? " " : commessa.getReferente_offerta3().getCognome()+" "+commessa.getReferente_offerta3().getNome());
-            table.addCell(Functions.getFormattedDate(offerta.getDataOfferta()));
-            table.addCell(String.valueOf(offerta.getAccettata()));
+            table.addCell(new Phrase(commessa.getCodice_commessa() == null || commessa.getCodice_commessa().equals("") ? " " : commessa.getCodice_commessa(), tableContentFont));
+            table.addCell(new Phrase(commessa.getNome_commessa() == null || commessa.getNome_commessa().equals("") ? " " : commessa.getNome_commessa(), tableContentFont));
+            table.addCell(new Phrase(commessa.getCliente().getNomeSocietà() == null || commessa.getCliente().getNomeSocietà().equals("") ? " " : commessa.getCliente().getNomeSocietà(), tableContentFont));
+            table.addCell(new Phrase(commessa.getReferente1() == null  ? " " : commessa.getReferente1().getCognome()+" "+commessa.getReferente1().getNome(), tableContentFont));
+            table.addCell(new Phrase(commessa.getCommerciale() == null  ? " " : commessa.getCommerciale().getCognome()+" "+commessa.getCommerciale().getNome(), tableContentFont));
+            table.addCell(new Phrase("v_"+String.valueOf(offerta.getVersione()), tableContentFont));
+            table.addCell(new Phrase(commessa.getReferente_offerta1() == null  ? " " : commessa.getReferente_offerta1().getCognome()+" "+commessa.getReferente_offerta1().getNome(), tableContentFont));
+            table.addCell(new Phrase(commessa.getReferente_offerta2() == null  ? " " : commessa.getReferente_offerta2().getCognome()+" "+commessa.getReferente_offerta2().getNome(), tableContentFont));
+            table.addCell(new Phrase(commessa.getReferente_offerta3() == null  ? " " : commessa.getReferente_offerta3().getCognome()+" "+commessa.getReferente_offerta3().getNome(), tableContentFont));
+            table.addCell(new Phrase(Functions.getFormattedDate(offerta.getDataOfferta()), tableContentFont));
+            table.addCell(new Phrase(offerta.getAccettata() == 0 ? "NO" : "SI", tableContentFont));
 
             /*table.addCell(banca.getNome() == null || banca.getNome().equals("") ? " " : banca.getNome());
             table.addCell(banca.getIndirizzo() == null || banca.getIndirizzo().equals("") ? " " : banca.getIndirizzo());

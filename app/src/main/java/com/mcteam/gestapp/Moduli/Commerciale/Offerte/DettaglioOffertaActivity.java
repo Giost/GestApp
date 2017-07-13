@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.gson.Gson;
+import com.mcteam.gestapp.Application.MyApp;
 import com.mcteam.gestapp.Models.Commerciale.Offerta;
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.Moduli.Home.HomeActivity;
@@ -243,6 +244,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
     }
 
     private void logout() {
+        ((MyApp) this.getApplication()).setCurrentUser(null); //Remove user in MyApp
         Intent goLogin = new Intent(this, LoginActivity.class);
         goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(goLogin);
