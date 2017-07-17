@@ -47,6 +47,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile files('libs/itextpdf-5.5.8.jar')
     compile files('libs/gson-2.5.jar')
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.3@aar') {
+        transitive = true;
+    }
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
@@ -59,7 +62,5 @@ dependencies {
     compile 'joda-time:joda-time:2.9.2'
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
     compile 'ir.sohreco.androidfilechooser:android-file-chooser:1.0.0@aar'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.3@aar') {
-        transitive = true;
-    }
+    compile 'com.android.support.constraint:constraint-layout:+'
 }

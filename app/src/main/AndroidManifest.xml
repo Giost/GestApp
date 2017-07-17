@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name="com.mcteam.gestapp.Application.MyApp"
+        android:name=".Application.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_circle_launcher"
         android:label="@string/app_name"
@@ -23,7 +23,7 @@
         android:windowSoftInputMode="adjustPan"
         tools:node="replace">
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Login.LoginActivity"
+            android:name=".Moduli.Login.LoginActivity"
             android:configChanges="orientation"
             android:label="@string/app_name">
             <intent-filter>
@@ -33,15 +33,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Home.HomeActivity"
+            android:name=".Moduli.Home.HomeActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_home" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Login.RegistrationActivity"
+            android:name=".Moduli.Login.RegistrationActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_registration" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Sistemi.SistemiAcitivity"
+            android:name=".Moduli.Sistemi.SistemiAcitivity"
             android:configChanges="orientation"
             android:icon="@drawable/ic_accessibility_white_24dp"
             android:label="@string/title_activity_sistemi"
@@ -55,148 +55,148 @@
                 android:resource="@xml/searchable_configuration" />
         </activity>
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Societa.RubricaSocietaActivity"
+            android:name=".Moduli.Gestionale.Societa.RubricaSocietaActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:label="@string/rubrica_societa"
             android:launchMode="singleTop" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Sistemi.ModificaUtenteDialog"
+            android:name=".Moduli.Sistemi.ModificaUtenteDialog"
             android:configChanges="orientation"
             android:label="@string/modifica_utente" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Home.UserInfoActivity"
+            android:name=".Moduli.Home.UserInfoActivity"
             android:configChanges="orientation"
             android:label="@string/info_utente" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Sistemi.VisualizzaActivity"
+            android:name=".Moduli.Sistemi.VisualizzaActivity"
             android:configChanges="orientation"
             android:label="@string/visualizza_utente" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Sistemi.EliminaActivity"
+            android:name=".Moduli.Sistemi.EliminaActivity"
             android:configChanges="orientation"
             android:label="@string/elimina_utente" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Sistemi.NuovoAccessoActivity"
+            android:name=".Moduli.Sistemi.NuovoAccessoActivity"
             android:configChanges="orientation"
             android:label="@string/aggiungi_nuovo_accesso" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Societa.VisualizzaSocietaActivity"
+            android:name=".Moduli.Gestionale.Societa.VisualizzaSocietaActivity"
             android:configChanges="orientation"
             android:label="@string/visualizza_societa_activity" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Sistemi.StampaAccessiActivity"
+            android:name=".Moduli.Sistemi.StampaAccessiActivity"
             android:configChanges="orientation"
             android:label="@string/stampa_accesso" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Societa.NuovaSocietaActivity"
+            android:name=".Moduli.Gestionale.Societa.NuovaSocietaActivity"
             android:configChanges="orientation"
             android:label="@string/nuova_societa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Sistemi.AdvanceSearchActivity"
+            android:name=".Moduli.Sistemi.AdvanceSearchActivity"
             android:configChanges="orientation"
             android:label="@string/ricerca_avanzata_sistemi" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Nominativo.RubricaNominativaActivity"
+            android:name=".Moduli.Gestionale.Nominativo.RubricaNominativaActivity"
             android:configChanges="orientation"
             android:label="@string/rubrica_nominativa_name" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Societa.ModificaSocietaActivity"
+            android:name=".Moduli.Gestionale.Societa.ModificaSocietaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_modifica_societa"
-            android:parentActivityName="com.mcteam.gestapp.Moduli.Gestionale.Societa.VisualizzaSocietaActivity" />
+            android:parentActivityName=".Moduli.Gestionale.Societa.VisualizzaSocietaActivity" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Societa.EliminaSocietaActivity"
+            android:name=".Moduli.Gestionale.Societa.EliminaSocietaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_elimina_societa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Societa.StampaSocietaActivity"
+            android:name=".Moduli.Gestionale.Societa.StampaSocietaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_stampa_societa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Societa.SocietaAdvanceSearchActivity"
+            android:name=".Moduli.Gestionale.Societa.SocietaAdvanceSearchActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_societa_advance_search" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Nominativo.VisualizzaNominativoActivity"
+            android:name=".Moduli.Gestionale.Nominativo.VisualizzaNominativoActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_visualizza_nominativo" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Nominativo.ModificaNominativoActivity"
+            android:name=".Moduli.Gestionale.Nominativo.ModificaNominativoActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_modifica_nominativo" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Nominativo.NuovoNominativoActivity"
+            android:name=".Moduli.Gestionale.Nominativo.NuovoNominativoActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_nuovo_nominativo" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Nominativo.EliminaNominativoActivity"
+            android:name=".Moduli.Gestionale.Nominativo.EliminaNominativoActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_elimina_nominativo" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Nominativo.StampaNominativoActivity"
+            android:name=".Moduli.Gestionale.Nominativo.StampaNominativoActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_stampa_nominativo" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Nominativo.NominativiAdvanceSearch"
+            android:name=".Moduli.Gestionale.Nominativo.NominativiAdvanceSearch"
             android:configChanges="orientation"
             android:label="@string/title_activity_nominativi_advance_search" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Commesse.CommesseActivity"
+            android:name=".Moduli.Gestionale.Commesse.CommesseActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_commesse" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Commesse.VisualizzaCommessaActivity"
+            android:name=".Moduli.Gestionale.Commesse.VisualizzaCommessaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_visualizza_commessa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Commesse.NuovaCommessaActivity"
+            android:name=".Moduli.Gestionale.Commesse.NuovaCommessaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_nuova_commessa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Commesse.EliminaCommessaActivity"
+            android:name=".Moduli.Gestionale.Commesse.EliminaCommessaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_elimina_commessa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Commesse.StampaCommessaActivity"
+            android:name=".Moduli.Gestionale.Commesse.StampaCommessaActivity"
             android:configChanges="orientation"
             android:label="Stampa commessa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Commesse.RicercaAvanzataCommesseActivity"
+            android:name=".Moduli.Gestionale.Commesse.RicercaAvanzataCommesseActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_ricerca_avanzata_commesse" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.RubricaBanche.RubricaBanca"
+            android:name=".Moduli.Amministrazione.RubricaBanche.RubricaBanca"
             android:configChanges="orientation"
             android:label="@string/title_activity_rubrica_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.RubricaBanche.VisualizzaBancaActivity"
+            android:name=".Moduli.Amministrazione.RubricaBanche.VisualizzaBancaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_visualizza_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.RubricaBanche.NuovaBancaActivity"
+            android:name=".Moduli.Amministrazione.RubricaBanche.NuovaBancaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_nuova_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.RubricaBanche.EliminaBancaActivity"
+            android:name=".Moduli.Amministrazione.RubricaBanche.EliminaBancaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_elimina_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.RubricaBanche.StampaBancaActivity"
+            android:name=".Moduli.Amministrazione.RubricaBanche.StampaBancaActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_stampa_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.RubricaBanche.RicercaAvanzataBanca"
+            android:name=".Moduli.Amministrazione.RubricaBanche.RicercaAvanzataBanca"
             android:configChanges="orientation"
             android:label="@string/title_activity_ricerca_avanzata_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Allegati.AllegatiActivity"
+            android:name=".Moduli.Gestionale.Allegati.AllegatiActivity"
             android:label="@string/title_activity_allegati" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Allegati.EliminaAllegatoActivity"
+            android:name=".Moduli.Gestionale.Allegati.EliminaAllegatoActivity"
             android:label="@string/title_activity_elimina_allegato" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Allegati.NuovoAllegatoActivity"
+            android:name=".Moduli.Gestionale.Allegati.NuovoAllegatoActivity"
             android:label="@string/title_activity_nuovo_allegato" />
         <activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
@@ -209,78 +209,81 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Allegati.RicercaAvanzataAllegati"
+            android:name=".Moduli.Gestionale.Allegati.RicercaAvanzataAllegati"
             android:label="@string/title_activity_ricerca_avanzata_allegati" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Commesse.StoricoCommesseActivity"
+            android:name=".Moduli.Gestionale.Commesse.StoricoCommesseActivity"
             android:label="@string/title_activity_storico_commesse" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Associazioni.AssociazioniActivity"
+            android:name=".Moduli.Gestionale.Associazioni.AssociazioniActivity"
             android:label="@string/title_activity_associazioni" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Associazioni.VisualizzaAssociazioneActivity"
+            android:name=".Moduli.Gestionale.Associazioni.VisualizzaAssociazioneActivity"
             android:label="@string/title_activity_visualizza_associazione" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Associazioni.NuovaAssociazioneActivity"
+            android:name=".Moduli.Gestionale.Associazioni.NuovaAssociazioneActivity"
             android:label="@string/title_activity_nuova_associazione" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Associazioni.EliminaAssociazioneActivity"
+            android:name=".Moduli.Gestionale.Associazioni.EliminaAssociazioneActivity"
             android:label="@string/title_activity_elimina_associazione" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Associazioni.StampaAssociazioneActivity"
+            android:name=".Moduli.Gestionale.Associazioni.StampaAssociazioneActivity"
             android:label="@string/title_activity_stampa_associazione" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Associazioni.AssociazioniRicercaAvanzataActivity"
+            android:name=".Moduli.Gestionale.Associazioni.AssociazioniRicercaAvanzataActivity"
             android:label="@string/title_activity_associazioni_ricerca_avanzata" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Gestionale.Associazioni.ConsulenteMultiSelectionDialog"
+            android:name=".Moduli.Gestionale.Associazioni.ConsulenteMultiSelectionDialog"
             android:label="@string/title_activity_consulente_multi_selection"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Produzione.Consuntivi.ConsuntiviMainActivity"
+            android:name=".Moduli.Produzione.Consuntivi.ConsuntiviMainActivity"
             android:label="@string/title_activity_consuntivi_main" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Produzione.Consuntivi.DayConsuntivoDialog"
+            android:name=".Moduli.Produzione.Consuntivi.DayConsuntivoDialog"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.PrimaNotaCassa.PrimaNotaCassaActivity"
+            android:name=".Moduli.Amministrazione.PrimaNotaCassa.PrimaNotaCassaActivity"
             android:label="@string/title_activity_prima_nota_cassa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.PrimaNotaCassa.NuovoModifCassaActivity"
+            android:name=".Moduli.Amministrazione.PrimaNotaCassa.NuovoModifCassaActivity"
             android:label="@string/nuova_activity_prima_nota_cassa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.PrimaNotaCassa.VisualElimCassaActivity"
+            android:name=".Moduli.Amministrazione.PrimaNotaCassa.VisualElimCassaActivity"
             android:label="@string/visulizza_activity_prima_nota_cassa" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.PrimaNotaBanca.PrimaNotaBancaActivity"
+            android:name=".Moduli.Amministrazione.PrimaNotaBanca.PrimaNotaBancaActivity"
             android:label="@string/title_activity_prima_nota_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.PrimaNotaBanca.NuovoModifBancaActivity"
+            android:name=".Moduli.Amministrazione.PrimaNotaBanca.NuovoModifBancaActivity"
             android:label="@string/nuova_activity_prima_nota_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Amministrazione.PrimaNotaBanca.VisualElimBancaActivity"
+            android:name=".Moduli.Amministrazione.PrimaNotaBanca.VisualElimBancaActivity"
             android:label="@string/visulizza_activity_prima_nota_banca" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Commerciale.Offerte.OfferteActivity"
+            android:name=".Moduli.Commerciale.Offerte.OfferteActivity"
             android:label="@string/title_activity_offerte" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Commerciale.Offerte.DettaglioOffertaActivity"
+            android:name=".Moduli.Commerciale.Offerte.DettaglioOffertaActivity"
             android:label="@string/title_activity_dettaglio_offerta" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Commerciale.Offerte.NuovaOffertaActivity"
+            android:name=".Moduli.Commerciale.Offerte.NuovaOffertaActivity"
             android:label="@string/title_activity_nuova_offerta" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Commerciale.Offerte.VisualOffertaActivity"
+            android:name=".Moduli.Commerciale.Offerte.VisualOffertaActivity"
             android:label="@string/title_activity_visual_offerta" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Commerciale.Offerte.EliminaOffertaActivity"
+            android:name=".Moduli.Commerciale.Offerte.EliminaOffertaActivity"
             android:label="@string/title_activity_elimina_offerta" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Commerciale.Offerte.ModificaOffertaActivity"
+            android:name=".Moduli.Commerciale.Offerte.ModificaOffertaActivity"
             android:label="@string/title_activity_modifica_offerta" />
         <activity
-            android:name="com.mcteam.gestapp.Moduli.Commerciale.Offerte.StampaOffertaActivity"
+            android:name=".Moduli.Commerciale.Offerte.StampaOffertaActivity"
             android:label="@string/title_activity_stampa_offerta" />
+        <activity
+            android:name=".Moduli.Commerciale.Offerte.OfferteAdvanceSearch"
+            android:label="@string/title_activity_offerte_advance_search" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

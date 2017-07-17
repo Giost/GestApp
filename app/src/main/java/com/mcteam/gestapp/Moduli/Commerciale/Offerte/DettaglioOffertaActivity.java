@@ -122,9 +122,10 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    /*Intent advancedSearch = new Intent(getApplicationContext(), SocietaAdvanceSearchActivity.class);
-                    advancedSearch.putParcelableArrayListExtra("listaSocieta", mRubricaSocieta);
-                    startActivity(advancedSearch);*/
+                    Intent advancedSearch = new Intent(getApplicationContext(), OfferteAdvanceSearch.class);
+                    advancedSearch.putParcelableArrayListExtra("OFFERTE", mOffArrayList);
+                    advancedSearch.putExtra("COMMESSA", mCommessa);
+                    startActivity(advancedSearch);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
