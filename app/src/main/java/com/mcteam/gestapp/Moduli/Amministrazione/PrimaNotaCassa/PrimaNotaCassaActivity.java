@@ -37,6 +37,7 @@ import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.Application.MyApp;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.NetworkReq.VolleyRequests;
+import com.mcteam.gestapp.Utils.Functions;
 
 /**
  * Created by Riccardo Rossi on 13/05/2016.
@@ -289,7 +290,7 @@ public class PrimaNotaCassaActivity extends AppCompatActivity {
                 goHome();
                 return true;
             case R.id.action_logout:
-                logout();
+                Functions.logout(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -312,14 +313,6 @@ public class PrimaNotaCassaActivity extends AppCompatActivity {
             refresh.setEnabled(true);
         else
             refresh.setEnabled(false);
-    }
-
-    private void logout() {
-        Intent goLogin = new Intent(this, LoginActivity.class);
-        ((MyApp) getApplication()).setCurrentUser(null);
-        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(goLogin);
-        finish();
     }
 
     private void goHome() {

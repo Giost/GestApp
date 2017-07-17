@@ -1,7 +1,12 @@
 package com.mcteam.gestapp.Utils;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.net.ParseException;
+import android.support.v7.app.AppCompatActivity;
+
+import com.mcteam.gestapp.Application.MyApp;
+import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -173,4 +178,15 @@ public class Functions {
         return newDate2.compareTo(newDate1) >= 0;
     }
 
+    /**
+     * Metodo per fare il logout, si viene mandati alla pagina di login
+     * @param oggetto  da cui viene fatto il logout
+     */
+    public static void logout(AppCompatActivity oggetto) {
+        ((MyApp) oggetto.getApplication()).setCurrentUser(null); //Remove user in MyApp
+        Intent goLogin = new Intent(oggetto, LoginActivity.class);
+        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        oggetto.startActivity(goLogin);
+        oggetto.finish();
+    }
 }

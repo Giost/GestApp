@@ -17,6 +17,7 @@ import com.mcteam.gestapp.Models.Rubrica.Societa;
 import com.mcteam.gestapp.Moduli.Home.HomeActivity;
 import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.R;
+import com.mcteam.gestapp.Utils.Functions;
 
 public class StampaSocietaActivity extends AppCompatActivity {
 
@@ -138,18 +139,11 @@ public class StampaSocietaActivity extends AppCompatActivity {
                 goHome();
                 return true;
             case R.id.action_logout:
-                logout();
+                Functions.logout(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void logout() {
-        Intent goLogin = new Intent(this, LoginActivity.class);
-        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(goLogin);
-        finish();
     }
 
     private void goHome() {

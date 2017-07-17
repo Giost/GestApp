@@ -26,6 +26,7 @@ import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.NetworkReq.PUTRequest;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.Utils.Constants;
+import com.mcteam.gestapp.Utils.Functions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -262,18 +263,11 @@ public class VisualizzaSocietaActivity extends AppCompatActivity {
                 goHome();
                 return true;
             case R.id.action_logout:
-                logout();
+                Functions.logout(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void logout() {
-        Intent goLogin = new Intent(this, LoginActivity.class);
-        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(goLogin);
-        finish();
     }
 
     private void goHome() {

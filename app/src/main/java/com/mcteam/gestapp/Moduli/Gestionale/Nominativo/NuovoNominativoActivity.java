@@ -493,7 +493,7 @@ public class NuovoNominativoActivity extends AppCompatActivity {
                 goHome();
                 return true;
             case R.id.action_logout:
-                logout();
+                Functions.logout(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -503,13 +503,6 @@ public class NuovoNominativoActivity extends AppCompatActivity {
     public void onClickSelData() {
         DialogFragment dialogFragment = new DatePickerFragment(mDataNascitaView);
         dialogFragment.show(getFragmentManager(), "datePicker");
-    }
-
-    private void logout() {
-        Intent goLogin = new Intent(this, LoginActivity.class);
-        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(goLogin);
-        finish();
     }
 
     private void goHome() {

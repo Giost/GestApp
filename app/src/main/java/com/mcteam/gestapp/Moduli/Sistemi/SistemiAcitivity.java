@@ -43,6 +43,7 @@ import com.mcteam.gestapp.Moduli.Home.HomeActivity;
 import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.NetworkReq.CustomRequest;
 import com.mcteam.gestapp.R;
+import com.mcteam.gestapp.Utils.Functions;
 import com.mcteam.gestapp.Utils.HeaderFooterPageEvent;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -234,7 +235,7 @@ public class SistemiAcitivity extends AppCompatActivity {
                 goHome();
                 return true;
             case R.id.action_logout:
-                logout();
+                Functions.logout(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -339,13 +340,6 @@ public class SistemiAcitivity extends AppCompatActivity {
 
         pdfToPrint.close();
 
-    }
-
-    private void logout() {
-        Intent goLogin = new Intent(this, LoginActivity.class);
-        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(goLogin);
-        finish();
     }
 
     private void goHome() {

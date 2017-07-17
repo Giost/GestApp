@@ -30,6 +30,7 @@ import com.mcteam.gestapp.NetworkReq.VolleyRequests;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.Utils.AndroidUtils;
 import com.mcteam.gestapp.Utils.Constants;
+import com.mcteam.gestapp.Utils.Functions;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -237,7 +238,7 @@ public class PrimaNotaBancaActivity extends AppCompatActivity {
                 goHome();
                 return true;
             case R.id.action_logout:
-                logout();
+                Functions.logout(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -259,14 +260,6 @@ public class PrimaNotaBancaActivity extends AppCompatActivity {
             refresh.setEnabled(true);
         else
             refresh.setEnabled(false);
-    }
-
-    private void logout() {
-        Intent goLogin = new Intent(this, LoginActivity.class);
-        ((MyApp) getApplication()).setCurrentUser(null);
-        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(goLogin);
-        finish();
     }
 
     private void goHome() {

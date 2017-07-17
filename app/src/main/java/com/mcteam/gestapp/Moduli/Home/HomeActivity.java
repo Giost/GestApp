@@ -33,6 +33,7 @@ import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.Moduli.Produzione.Consuntivi.ConsuntiviMainActivity;
 import com.mcteam.gestapp.Moduli.Sistemi.SistemiAcitivity;
 import com.mcteam.gestapp.R;
+import com.mcteam.gestapp.Utils.Functions;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -297,21 +298,12 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_logout:
-                logout();
+                Functions.logout(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    private void logout() {
-        ((MyApp) this.getApplication()).setCurrentUser(null); //Remove user in MyApp
-        Intent goLogin = new Intent(this, LoginActivity.class);
-        goLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(goLogin);
-        finish();
-    }
-
     //Fabric crash simulation
     public void forceCrash() {
         throw new RuntimeException("This is a crash");

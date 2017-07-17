@@ -86,7 +86,7 @@
     <string name="action_ricarica">Ricarica</string>
     <string name="debug_flag">true</string>
     <string name="title_activity_offerte">Offerte</string>
-    <string name="title_activity_dettaglio_offerta">DettaglioOffertaActivity</string>
+    <string name="title_activity_dettaglio_offerta">Dettaglio Offerta</string>
     <string name="title_activity_nuova_offerta">Nuova Offerta</string>
     <string name="title_activity_visual_offerta">Visualizza Offerta</string>
     <string name="title_activity_elimina_offerta">Elimina Offerta</string>
