@@ -33,7 +33,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
                 android:ems="10"
                 android:id="@+id/offerte_ricerca_avanzata_data"
                 android:hint="Data offerta " />
