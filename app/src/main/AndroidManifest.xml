@@ -284,6 +284,9 @@
         <activity
             android:name=".Moduli.Commerciale.Offerte.OfferteAdvanceSearch"
             android:label="@string/title_activity_offerte_advance_search" />
+        <activity
+            android:name=".Moduli.Commerciale.Offerte.DettaglioOffertaAdvanceSearch"
+            android:label="@string/title_activity_offerte_advance_search" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

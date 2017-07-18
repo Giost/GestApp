@@ -62,5 +62,5 @@ dependencies {
     compile 'joda-time:joda-time:2.9.2'
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
     compile 'ir.sohreco.androidfilechooser:android-file-chooser:1.0.0@aar'
-    compile 'com.android.support.constraint:constraint-layout:+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

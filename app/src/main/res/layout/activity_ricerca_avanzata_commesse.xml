@@ -24,9 +24,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/commesse_ricerca_avanzata_inputs"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:id="@+id/commesse_ricerca_avanzata_inputs">
 
             <EditText
                 android:layout_width="363dp"
@@ -118,8 +116,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:id="@+id/linearLayout9" >
 
             <com.beardedhen.androidbootstrap.BootstrapButton

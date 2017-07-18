@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.Moduli.Home.HomeActivity;
 import com.mcteam.gestapp.Moduli.Login.LoginActivity;
@@ -71,6 +72,20 @@ public class OfferteActivity extends AppCompatActivity {
         mOffRecyclerView.setAdapter(mAdapter);
 
         mProgressBar = (ProgressBar) findViewById(R.id.offerte_progress);
+
+        FloatingActionButton ricercaAvanzata = (FloatingActionButton) findViewById(R.id.fab_offerta_ricerca_avanzata);
+        ricercaAvanzata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent advancedSearch = new Intent(getApplicationContext(), OfferteAdvanceSearch.class);
+                    advancedSearch.putParcelableArrayListExtra("COMMESSE", mCommArrList);
+                    startActivity(advancedSearch);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         mVolleyRequests.getCommesseList();
     }
 

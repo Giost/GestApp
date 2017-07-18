@@ -1,51 +1,41 @@
 package com.mcteam.gestapp.Moduli.Commerciale.Offerte;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.mcteam.gestapp.Models.Commerciale.Offerta;
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.Utils.Functions;
 
-import android.app.DatePickerDialog;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Locale;
 
 public class OfferteAdvanceSearch extends AppCompatActivity {
 
-    private ArrayList<Offerta> mOffArrayList;
-    private ArrayList<Offerta> mSearchList;
+    private ArrayList<Commessa> mCommArrayList;
+    private ArrayList<Commessa> mSearchList;
     private RecyclerView mOffRecyclerView;
-    private DettaglioOffertaAdapter mOffAdapter;
-    private Commessa mCommessa;
-    private EditText mVersione;
-    private EditText mDataOfferta;
-    private RadioButton mPresentata;
-    private RadioButton mNonPresentata;
+    private OfferteAdapter mAdapter;
+    private EditText mCliente;
+    private EditText mCodice;
+    private EditText mNome;
     private TextView mResultStatus;
     private ImageButton cercaButton;
     private LinearLayout mInputs;
-    private DatePickerDialog DatePickerDialog;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -64,51 +54,27 @@ public class OfferteAdvanceSearch extends AppCompatActivity {
         }
 
         //get list from intent
-        mOffArrayList = getIntent().getParcelableArrayListExtra("OFFERTE");
-        mCommessa = getIntent().getParcelableExtra("COMMESSA");
+        mCommArrayList = getIntent().getParcelableArrayListExtra("COMMESSE");
 
-        mSearchList = new ArrayList<>(mOffArrayList);
+        mSearchList = new ArrayList<>(mCommArrayList);
 
         // inizializzazione view
-        mOffAdapter = new DettaglioOffertaAdapter(mSearchList, mCommessa);
+        mAdapter = new OfferteAdapter(mSearchList, new OfferteAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Commessa item) {
+                Intent i = new Intent(getApplicationContext(), DettaglioOffertaActivity.class);
+                i.putExtra("COMMESSA", item);
+                startActivity(i);
+            }
+        });
         mOffRecyclerView = (RecyclerView) findViewById(R.id.offerte_ricerca_avanzata_recycler);
         mOffRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mOffRecyclerView.setAdapter(mOffAdapter);
+        mOffRecyclerView.setAdapter(mAdapter);
 
-        mVersione = (EditText) findViewById(R.id.offerte_ricerca_avanzata_versione);
+        mCliente = (EditText) findViewById(R.id.offerte_ricerca_avanzata_cliente);
+        mCodice = (EditText) findViewById(R.id.offerte_ricerca_avanzata_codice);
+        mNome = (EditText) findViewById(R.id.offerte_ricerca_avanzata_nome);
 
-        mDataOfferta = (EditText) findViewById(R.id.offerte_ricerca_avanzata_data);
-        mDataOfferta.setInputType(InputType.TYPE_NULL);
-
-        mDataOfferta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog.show();
-            }
-        });
-        mDataOfferta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v,boolean isFocused) {
-                if (isFocused) {
-                    DatePickerDialog.show();
-                }
-            }
-        });
-//http://androidopentutorials.com/android-datepickerdialog-on-edittext-click-event/
-        final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ITALY);
-        Calendar newCalendar = Calendar.getInstance();
-        DatePickerDialog = new DatePickerDialog(this, new android.app.DatePickerDialog.OnDateSetListener() {
-
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(year, monthOfYear, dayOfMonth);
-                mDataOfferta.setText(dateFormatter.format(newDate.getTime()));
-            }
-
-        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-
-        mPresentata = (RadioButton) findViewById(R.id.offerte_presentata_si);
-        mNonPresentata = (RadioButton) findViewById(R.id.offerte_presentata_no);
         mResultStatus = (TextView) findViewById(R.id.offerte_ricerca_avanzata_status);
         cercaButton = (ImageButton) findViewById(R.id.offerte_ricerca_avanzata_cerca_button);
         mInputs = (LinearLayout) findViewById(R.id.offerte_ricerca_avanzata_inputs);
@@ -131,63 +97,69 @@ public class OfferteAdvanceSearch extends AppCompatActivity {
      */
     private void advanceSearch()
     {
-        ArrayList<Offerta> matchingElement = new ArrayList<>();
-        ArrayList<Offerta> tempResult;
+        ArrayList<Commessa> commesseSetResult = new ArrayList<>(mCommArrayList);
 
-        String versione = mVersione.getText().toString();
-        String dataOfferta = mDataOfferta.getText().toString();
-        int presentata = mPresentata.isChecked() ? 1 : 0 ;
+        String cliente = mCliente.getText().toString();
+        String codice = mCodice.getText().toString();
+        String nomeCommessa = mNome.getText().toString();
 
-        String data[] = {versione, dataOfferta, presentata == 1 ? "SI" : "NO"};
+        String data[] = {cliente, codice, nomeCommessa};
 
-        if(!TextUtils.isEmpty(versione))
-        {
-            if (!TextUtils.isEmpty(dataOfferta)) // Ricerca per versione, data e presentata
-            {
-                for (Offerta off : mOffArrayList)
-                {
-                    if (versione.contains(String.valueOf(off.getVersione())) && dataOfferta.contains(Functions.getFormattedDate(off.getDataOfferta())) && presentata==off.getAccettata())
-                    {
-                        matchingElement.add(off);
+        codice = codice.toUpperCase();
+        nomeCommessa = nomeCommessa.toUpperCase();
+        cliente = cliente.toUpperCase();
+
+        if (TextUtils.isEmpty(codice) && TextUtils.isEmpty(nomeCommessa) && TextUtils.isEmpty(cliente)) {
+            updateList(mCommArrayList);
+            return;
+        }
+
+        ArrayList<Commessa> tempResult;
+
+        if (!TextUtils.isEmpty(codice)) { // Ricerca per codice
+            tempResult = new ArrayList<>();
+            for (Commessa commessa : mCommArrayList) {
+                if (commessa.getCodice_commessa().toUpperCase().contains(codice)) {
+                    tempResult.add(commessa);
+                }
+            }
+
+            commesseSetResult = (ArrayList) Functions.union(commesseSetResult, tempResult);
+
+        }
+
+        if (!TextUtils.isEmpty(nomeCommessa)) { // Ricerca per nome commessa
+            tempResult = new ArrayList<>();
+            for (Commessa commessa : mCommArrayList) {
+
+                if (commessa.getNome_commessa() != null) {
+                    if (commessa.getNome_commessa().toUpperCase().contains(nomeCommessa)) {
+                        tempResult.add(commessa);
                     }
                 }
             }
-            else // Ricerca per versione e presentata
-            {
-                for (Offerta off : mOffArrayList)
-                {
-                    if (versione.contains(String.valueOf(off.getVersione())) && presentata==off.getAccettata())
-                    {
-                        matchingElement.add(off);
-                    }
+            commesseSetResult = (ArrayList) Functions.union(commesseSetResult, tempResult);
+        }
+
+        if (!TextUtils.isEmpty(cliente)) { // Ricerca per nome cliente
+            tempResult = new ArrayList<>();
+            String nomeSocieta = "";
+            for (Commessa commessa : mCommArrayList) {
+
+                if (commessa.getCliente() != null && !TextUtils.isEmpty(commessa.getCliente().getNomeSocietà())) {
+                    nomeSocieta = commessa.getCliente().getNomeSocietà().toUpperCase();
+                }
+
+                if (nomeSocieta.contains(cliente)) {
+                    tempResult.add(commessa);
                 }
             }
+            commesseSetResult = (ArrayList) Functions.union(commesseSetResult, tempResult);
         }
-        else if (!TextUtils.isEmpty(dataOfferta)) // Ricerca per data e presentata
-        {
-            for (Offerta off : mOffArrayList)
-            {
-                if (dataOfferta.contains(Functions.getFormattedDate(off.getDataOfferta())) && presentata==off.getAccettata())
-                {
-                    matchingElement.add(off);
-                }
-            }
-        }
-        else // Ricerca per presentata
-        {
-            for (Offerta off : mOffArrayList)
-            {
-                if (presentata==off.getAccettata())
-                {
-                    matchingElement.add(off);
-                }
-            }
-        }
-        updateList(matchingElement,data);
-        System.out.println(mOffArrayList.get(0).getDataOfferta()+" data:"+dataOfferta+"presentata:"+presentata);
+        updateList(commesseSetResult,data);
     }
 
-    private void updateList(ArrayList<Offerta> list, String... query) {
+    private void updateList(ArrayList<Commessa> list, String... query) {
         mSearchList.clear();
         mSearchList.addAll(list);
         String result = "";
@@ -197,6 +169,7 @@ public class OfferteAdvanceSearch extends AppCompatActivity {
         }
 
         mResultStatus.setText("Risultati per " + result + " : " + list.size());
-        mOffAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
+
 }
