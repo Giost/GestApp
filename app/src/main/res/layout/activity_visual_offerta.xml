@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/empty"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/simple_blue" />
+                android:textColor="@color/asphalt_color" />
         </LinearLayout>
 
         <LinearLayout

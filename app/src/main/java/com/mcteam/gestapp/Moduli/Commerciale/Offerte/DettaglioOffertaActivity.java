@@ -27,11 +27,9 @@ import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.gson.Gson;
-import com.mcteam.gestapp.Application.MyApp;
 import com.mcteam.gestapp.Models.Commerciale.Offerta;
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.Moduli.Home.HomeActivity;
-import com.mcteam.gestapp.Moduli.Login.LoginActivity;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.Utils.Functions;
 
@@ -40,7 +38,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class DettaglioOffertaActivity extends AppCompatActivity {
 
