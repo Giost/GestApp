@@ -48,7 +48,7 @@ public class DettaglioOffertaOverflow implements View.OnClickListener {
                         mContext.startActivity(eliminaIntent);
                         return true;
                     case R.id.menu_action_modifica:
-                        Intent modificaIntent = new Intent(mContext, NuovaOffertaActivity.class);
+                        Intent modificaIntent = new Intent(mContext, ModificaOffertaActivity.class);
                         modificaIntent.putExtra("OFFERTA", mElement);
                         modificaIntent.putExtra("COMMESSA",mCommessa);
                         mContext.startActivity(modificaIntent);
