@@ -75,7 +75,7 @@ public class DettaglioOffertaAdapter extends RecyclerView.Adapter<DettaglioOffer
         public void bind(final Offerta offerta) {
             holderVersione.setText("v_"+String.valueOf(offerta.getVersione()));
             holderDataOfferta.setText(Functions.getFormattedDate(offerta.getDataOfferta()));
-            holderAccettata.setText(String.valueOf(offerta.getAccettata()));
+            holderAccettata.setText(offerta.getAccettata()== 0 ? "NO" : "SI");
             holderAllegato.setImageBitmap(AllegatiUtils.getAllegatoLogo(activityContext.getResources(), offerta.getAllegato()));
             DettaglioOffertaOverflow listener = new DettaglioOffertaOverflow(offerta,commessa, activityContext);
             holderOverflow.setOnClickListener(listener);

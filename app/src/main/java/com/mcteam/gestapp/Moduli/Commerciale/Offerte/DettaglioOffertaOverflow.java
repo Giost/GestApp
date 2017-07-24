@@ -34,7 +34,7 @@ public class DettaglioOffertaOverflow implements View.OnClickListener {
         //Creating the instance of PopupMenu
         OverflowPopupMenu popupMenu = new OverflowPopupMenu(mContext, v);
         //Inflating the Popup using xml file
-        popupMenu.getMenuInflater().inflate(R.menu.accessi_overflow_menu, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.overflow_menu_noprint, popupMenu.getMenu());
 
         //registering popup with OnMenuItemClickListener
         popupMenu.setOnMenuItemClickListener(new android.widget.PopupMenu.OnMenuItemClickListener() {
@@ -52,12 +52,6 @@ public class DettaglioOffertaOverflow implements View.OnClickListener {
                         modificaIntent.putExtra("OFFERTA", mElement);
                         modificaIntent.putExtra("COMMESSA",mCommessa);
                         mContext.startActivity(modificaIntent);
-                        return true;
-                    case R.id.menu_action_stampa:
-                        Intent stampaIntent = new Intent(mContext, StampaOffertaActivity.class);
-                        stampaIntent.putExtra("OFFERTA", mElement);
-                        stampaIntent.putExtra("COMMESSA",mCommessa);
-                        mContext.startActivity(stampaIntent);
                         return true;
                     default:
                         return false;
@@ -83,11 +77,6 @@ public class DettaglioOffertaOverflow implements View.OnClickListener {
                         Intent modificaIntent = new Intent(mContext, NuovaOffertaActivity.class);
                         modificaIntent.putExtra("OFFERTA_TO_MODIFY", mElement);
                         mContext.startActivity(modificaIntent);
-                        return true;
-                    case R.id.menu_action_stampa:
-                        Intent stampaIntent = new Intent(mContext, StampaOffertaActivity.class);
-                        stampaIntent.putExtra("OFFERTA_TO_PRINT", mElement);
-                        mContext.startActivity(stampaIntent);
                         return true;
                     default:
                         return super.onMenuItemSelected(menu, item);

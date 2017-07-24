@@ -279,9 +279,6 @@
             android:name=".Moduli.Commerciale.Offerte.ModificaOffertaActivity"
             android:label="@string/title_activity_modifica_offerta" />
         <activity
-            android:name=".Moduli.Commerciale.Offerte.StampaOffertaActivity"
-            android:label="@string/title_activity_stampa_offerta" />
-        <activity
             android:name=".Moduli.Commerciale.Offerte.OfferteAdvanceSearch"
             android:label="@string/title_activity_offerte_advance_search" />
         <activity
