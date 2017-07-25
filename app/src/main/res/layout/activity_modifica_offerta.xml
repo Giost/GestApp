@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_modifica_offerta"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mcteam.gestapp.Moduli.Commerciale.Offerte.ModificaOffertaActivity">
+    tools:context="com.mcteam.gestapp.Moduli.Commerciale.Offerte.NuovaOffertaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/textView137"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="17dp"
             android:text="Dati offerta:"
             android:textColor="@color/petrolio_scuro"
             android:textSize="22dp"
@@ -30,188 +29,337 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView192"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Codice commessa:" />
-
-            <TextView
-                android:id="@+id/modifica_offerta_codcomm"
+                android:id="@+id/textView136"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/asphalt_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView138"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Cliente:" />
-
-            <TextView
-                android:id="@+id/modifica_offerta_cliente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/asphalt_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView142"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Primo referente:" />
-
-            <TextView
-                android:id="@+id/modifica_offerta_ref1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/asphalt_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView143"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Secondo referente:" />
-
-            <TextView
-                android:id="@+id/modifica_offerta_ref2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/asphalt_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView145"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:text="Terzo referente:" />
-
-            <TextView
-                android:id="@+id/modifica_offerta_ref3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/asphalt_color"
+                android:paddingLeft="5dp"
+                android:text="CODICE COMMESSA"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/modifica_offerta_codcom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="Codice Commessa"
+                    android:text="@string/empty"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <!-- <Button
+                    android:id="@+id/button17"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/date_picker"
+                    android:onClick="onClickSelData"
+                    android:text="Seleziona" /> -->
+            </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView147"
-                android:layout_width="170dp"
+                android:id="@+id/textView170"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data offerta:" />
+                android:paddingLeft="5dp"
+                android:text="CLIENTE"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/modifica_offerta_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="Cliente"
+                    android:text="@string/empty" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView172"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="PRIMO REFERENTE"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/modifica_offerta_ref1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Primo Referente"
+                android:text="@string/empty" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView174"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="SECONDO REFERENTE"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/modifica_offerta_ref2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Secondo Referente"
+                android:text="@string/empty" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView176"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:paddingLeft="5dp"
+                android:text="TERZO REFERENTE"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/modifica_offerta_ref3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Terzo Referente"
+                android:text="@string/empty" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="13dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView178"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="DATA"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <EditText
                 android:id="@+id/modifica_offerta_dataoff"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/asphalt_color" />
+                android:focusable="false"
+                android:hint="Data"
+                android:inputType="numberDecimal"
+                android:text="@string/empty" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
+            android:layout_marginBottom="17dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView151"
-                android:layout_width="170dp"
+                android:id="@+id/textView180"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Oggetto:" />
+                android:paddingLeft="5dp"
+                android:text="OGGETTO"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/modifica_offerta_oggetto"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/empty"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/asphalt_color" />
+                android:hint="Oggetto"
+                android:focusable="false"
+                android:text="@string/empty" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="13dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/textView154"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Presentata:" />
+                android:text="Presentata:"
+                android:layout_weight="0.01"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
 
             <CheckBox
                 android:id="@+id/modifica_offerta_present"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--<TextView
+                android:id="@+id/visual_offerta_present"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false" />
+                android:text="@string/empty"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/red" />-->
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="18dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView163"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:text="Allegato:" />
+            <RadioGroup
+                android:id="@+id/modifica_offerta_group_allegato"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <ImageView
+                <TextView
+                    android:id="@+id/textView143"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Vuoi modificare l'offerta?"
+                    android:textColor="@color/black"/>
+
+
+                <RadioButton
+                    android:id="@+id/modifica_offerta_si"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sì" />
+
+                <RadioButton
+                    android:id="@+id/modifica_offerta_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No"
+                    android:checked="true"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/modifica_offerta_layout_allegato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textView200"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="ALLEGATO"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <!--<EditText
+                android:id="@+id/dett_off_new_alleg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Allegato"
+                android:inputType="numberDecimal"
+                android:text="@string/empty" />-->
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/modifica_offerta_allegato"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:fitsSystemWindows="true"
+                android:focusable="false"
+                android:text="Scegli file*.."
+                app:bootstrapBrand="warning"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:roundedCorners="true"
+                app:showOutline="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/modifica_offerta_group_versione"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/modifica_offerta_nuova"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Crea una nuova versione"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/modifica_offerta_sovrascivi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sovrascrivi versione corrente" />
+
+            </RadioGroup>
         </LinearLayout>
 
         <LinearLayout
@@ -235,10 +383,11 @@
                 android:id="@+id/modifica_offerta_conferma_btn"
                 android:layout_width="120dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="25dp"
                 android:background="@drawable/access_blue"
                 android:text="Modifica"
                 android:textColor="@color/blue" />
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
