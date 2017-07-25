@@ -15,7 +15,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/commerciale_home_background"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp">
 
         <TextView
             android:id="@+id/dett_off_head_nomecomm"
@@ -27,7 +28,6 @@
             android:gravity="center_vertical"
             android:text="Nome Commessa"
             android:textColor="@color/white"
-            android:textSize="10dp"
             android:textStyle="bold" />
 
         <TextView
@@ -96,50 +96,49 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/dettaglio_offerta_header"
         android:background="@drawable/commerciale_home_background"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/textView307"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="versione"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Versione"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white"
-            android:textSize="10dp" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/textView308"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="13dp"
-            android:gravity="center_vertical"
-            android:text="data offerta"
+            android:gravity="center"
+            android:text="Data offerta"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white"
-            android:textSize="10dp" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/textView309"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="presentata"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Presentata"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white"
-            android:textSize="10dp" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/textView310"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="13dp"
-            android:gravity="center_vertical"
-            android:text="allegato"
+            android:gravity="center"
+            android:text="Allegato"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white"
-            android:textSize="10dp" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

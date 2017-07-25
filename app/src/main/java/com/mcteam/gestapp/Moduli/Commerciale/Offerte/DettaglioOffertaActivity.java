@@ -291,20 +291,15 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
 
     private void emptyMode(boolean enabled) {
         LinearLayout emptyLayout = (LinearLayout) findViewById(R.id.dettaglio_offerta_empty);
-        /*FloatingActionButton fabSearch = (FloatingActionButton) findViewById(R.id.fab_offerta_search);
-        FloatingActionButton fabPrint = (FloatingActionButton) findViewById(R.id.fab_offerta_print);
-        FloatingActionButton fabExcel = (FloatingActionButton) findViewById(R.id.fab_offerta_excel);*/
         FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fab_offerta_add);
         LinearLayout fieldsLayout = (LinearLayout) findViewById(R.id.dettaglio_offerta_fields);
 
         if (enabled) {
+            fieldsLayout.setVisibility(View.GONE);
             emptyLayout.setVisibility(View.VISIBLE);
             fabAdd.setVisibility(View.VISIBLE);
         } else {
             fabMenu.setVisibility(View.VISIBLE);
-            /*fabSearch.setVisibility(View.VISIBLE);
-            fabPrint.setVisibility(View.VISIBLE);
-            fabExcel.setVisibility(View.VISIBLE);*/
         }
 
     }
