@@ -7,36 +7,42 @@
 
     <TextView
         android:id="@+id/offerte_item_versione"
-        android:layout_width="75dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginLeft="10dp"
         android:textColor="@color/asphalt_color"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/offerte_item_data"
-        android:layout_width="75dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginLeft="5dp"
         android:gravity="center"
         android:textSize="14dp" />
 
     <TextView
         android:id="@+id/offerte_item_accettata"
-        android:layout_width="75dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginLeft="5dp"
         android:gravity="center" />
 
     <ImageView
         android:id="@+id/offerte_item_allegato"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:layout_marginLeft="5dp"
         android:gravity="center" />
+    <!--android:layout_width="50dp"
+        android:layout_height="50dp"-->
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="24dp"
         android:layout_height="match_parent"
         android:gravity="center">
 

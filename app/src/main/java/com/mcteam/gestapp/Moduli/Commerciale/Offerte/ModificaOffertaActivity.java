@@ -188,7 +188,7 @@ public class ModificaOffertaActivity extends AppCompatActivity {
                 mDateFragment.show(getFragmentManager(), "datePicker");
             }
         });
-        mOffertaDataOff.setText(Functions.getFormattedDate(commessa.getData()));
+        mOffertaDataOff.setText(Functions.getFormattedDate(offerta.getDataOfferta()));
 
         mOffertaObj.setText(commessa.getNome_commessa());
         mOffertaObj.setEnabled(false);
@@ -255,7 +255,7 @@ public class ModificaOffertaActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
-        Offerta offertaModifica = new Offerta();
+        Offerta offertaModifica = offerta;
 
         /* Controllo selezione spinner */
         if (mOffertaRef1.getSelectedItemPosition() == 0 ||
@@ -294,6 +294,18 @@ public class ModificaOffertaActivity extends AppCompatActivity {
             }
 
             String json = gson.toJson(offertaModifica);*/
+
+            /*offerta.setDataOfferta(mOffertaDataOff.getText().toString());
+            offerta.setAccettata(mOffertaPresent.isChecked() ? 1 : 0);
+            if (rdModAllegato.isChecked())
+            {
+                offerta.setAllegato(mChoosenFile.getName());
+            }
+
+            commessa.setReferente_offerta1((Nominativo) mOffertaRef1.getSelectedItem());
+            commessa.setReferente_offerta2((Nominativo) mOffertaRef2.getSelectedItem());
+            commessa.setReferente_offerta3((Nominativo) mOffertaRef3.getSelectedItem());*/
+
             String data = null;
             try
             {
@@ -306,6 +318,8 @@ public class ModificaOffertaActivity extends AppCompatActivity {
             String json = "{\"allegato\":\""+(rdModAllegato.isChecked() ? mChoosenFile.getName() : offerta.getAllegato())+"\",\"data_offerta\":\"" + data +"\",\"id_commessa\":" + offerta.getIdCommessa() +",\"accettata\":" + (mOffertaPresent.isChecked() ? 1 : 0) +",\"versione\":" + offerta.getVersione() +
                     ",\"off1_comm\":" + ((Nominativo) mOffertaRef1.getSelectedItem()).getID() +",\"off2_comm\":" + ((Nominativo) mOffertaRef2.getSelectedItem()).getID() +",\"off3_comm\":" + ((Nominativo) mOffertaRef3.getSelectedItem()).getID() +",\"new_version\":" +  (rdSovrascrivi.isChecked() ? 0 : 1)+",\"edit_offerta\":" +  (rdModAllegato.isChecked() ? 1 : 0)+"}";
             System.out.println(json);
+            offertaModifica.setVersione(100);
+            offerta = offertaModifica;
             try {
                 mMyRequests.addNewElementRequest(json,"offerta-edit");
             } catch (Exception e) {

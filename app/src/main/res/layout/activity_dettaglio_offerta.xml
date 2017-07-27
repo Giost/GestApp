@@ -92,11 +92,12 @@
         android:id="@+id/dettaglio_offerta_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/dettaglio_offerta_header"
         android:background="@drawable/commerciale_home_background"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:layout_below="@+id/dettaglio_offerta_header"
+        android:layout_toRightOf="@+id/dettaglio_offerta_empty"
+        android:layout_toEndOf="@+id/dettaglio_offerta_empty"
+        android:paddingRight="24dp">
 
         <TextView
             android:id="@+id/textView307"
@@ -113,7 +114,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="13dp"
             android:gravity="center"
             android:text="Data offerta"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -134,7 +134,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="13dp"
             android:gravity="center"
             android:text="Allegato"
             android:textAppearance="?android:attr/textAppearanceSmall"
