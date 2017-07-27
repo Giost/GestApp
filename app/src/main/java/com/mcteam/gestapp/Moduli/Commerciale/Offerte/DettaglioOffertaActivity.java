@@ -49,6 +49,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
     private View overlay;
     private FloatingActionsMenu fabMenu;
     private ProgressBar mProgressBar;
+    private final Gson gson = new Gson();
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -133,47 +134,13 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
 
         mCommessa = getIntent().getParcelableExtra("COMMESSA");
 
-        final Gson gson = new Gson();
         mOffArrayList = new ArrayList<>();
         mOffAdapter = new DettaglioOffertaAdapter(mOffArrayList, mCommessa);
         mOffRecyclerView = (RecyclerView) findViewById(R.id.offerte_recycler);
         mOffRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mOffRecyclerView.setAdapter(mOffAdapter);
 
-        String url = getString(R.string.mobile_url) + "offerte-list/" + mCommessa.getID();
-
-        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                url,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        ArrayList<Offerta> newList = new ArrayList<>();
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject obj = response.getJSONObject(i);
-                                Offerta offerta = gson.fromJson(obj.toString(), Offerta.class);
-                                //System.out.println(offerta);
-                                newList.add(offerta);
-                            } catch (JSONException e) {
-                                System.out.println("Something went wrong during deserialization!");
-                                e.printStackTrace();
-                            }
-                        }
-                        mSearchList=newList;
-                        initializeList(newList);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("Something went wrong!");
-                        error.printStackTrace();
-                    }
-                }
-        );
-
-        Volley.newRequestQueue(this).add(jsonObjectRequest);
+        getOfferte(true);
 
         setupHeaderCommessa(mCommessa);
     }
@@ -340,9 +307,55 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         }
     }
 
+    private void getOfferte(final boolean first)
+    {
+        String url = getString(R.string.mobile_url) + "offerte-list/" + mCommessa.getID();
+
+        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        ArrayList<Offerta> newList = new ArrayList<>();
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject obj = response.getJSONObject(i);
+                                Offerta offerta = gson.fromJson(obj.toString(), Offerta.class);
+                                //System.out.println(offerta);
+                                newList.add(offerta);
+                            } catch (JSONException e) {
+                                System.out.println("Something went wrong during deserialization!");
+                                e.printStackTrace();
+                            }
+                        }
+                        mSearchList=newList;
+                        if (first)
+                        {
+                            initializeList(newList);
+                        }
+                        else
+                        {
+                            updateList(newList);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("Something went wrong!");
+                        error.printStackTrace();
+                    }
+                }
+        );
+
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         fabMenu.collapse();
+        getOfferte(false);
     }
 }

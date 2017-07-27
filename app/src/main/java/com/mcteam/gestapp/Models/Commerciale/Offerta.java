@@ -28,6 +28,11 @@ public class Offerta implements Parcelable{
     @SerializedName("allegato")
     private String allegato;
 
+    public Offerta()
+    {
+
+    }
+
     protected Offerta(Parcel in) {
         idCommessa = in.readInt();
         versione = in.readInt();

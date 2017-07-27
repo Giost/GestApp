@@ -268,13 +268,13 @@
 
             <TextView
                 android:id="@+id/dett_off_alleg_nome"
-                android:text="prova"
+                android:text="Nessun file selezionato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/dett_off_alleg_size"
-                android:text="500MB"
+                android:text=""
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
