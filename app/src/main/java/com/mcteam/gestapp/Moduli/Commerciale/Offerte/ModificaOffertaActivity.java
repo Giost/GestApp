@@ -318,10 +318,12 @@ public class ModificaOffertaActivity extends AppCompatActivity {
             String json = "{\"allegato\":\""+(rdModAllegato.isChecked() ? mChoosenFile.getName() : offerta.getAllegato())+"\",\"data_offerta\":\"" + data +"\",\"id_commessa\":" + offerta.getIdCommessa() +",\"accettata\":" + (mOffertaPresent.isChecked() ? 1 : 0) +",\"versione\":" + offerta.getVersione() +
                     ",\"off1_comm\":" + ((Nominativo) mOffertaRef1.getSelectedItem()).getID() +",\"off2_comm\":" + ((Nominativo) mOffertaRef2.getSelectedItem()).getID() +",\"off3_comm\":" + ((Nominativo) mOffertaRef3.getSelectedItem()).getID() +",\"new_version\":" +  (rdSovrascrivi.isChecked() ? 0 : 1)+",\"edit_offerta\":" +  (rdModAllegato.isChecked() ? 1 : 0)+"}";
             System.out.println(json);
-            offertaModifica.setVersione(100);
-            offerta = offertaModifica;
+
             try {
                 mMyRequests.addNewElementRequest(json,"offerta-edit");
+                if (rdModAllegato.isChecked()) {
+                    mMyRequests.uploadFileOfferta(mChoosenFile);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

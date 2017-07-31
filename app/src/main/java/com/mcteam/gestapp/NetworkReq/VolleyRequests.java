@@ -530,6 +530,50 @@ public class VolleyRequests {
         mRequestQueue.add(multipartRequest);
     }
 
+    public void uploadFileOfferta(File file) throws IOException {
+
+        System.out.println("inside uploadFileOfferta");
+
+        String url = mContext.getString(R.string.mobile_url);
+        url += "offerta-allegato-nuovo";
+
+        byte[] bfile = fullyReadFileToBytes(file);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        DataOutputStream dos = new DataOutputStream(baos);
+
+        buildFilePart(dos, bfile, file.getName());
+
+        dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+        multipartBody = baos.toByteArray();
+
+        MultipartRequest multipartRequest = new MultipartRequest(url, null, mimeType, multipartBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    System.out.println(response.toString());
+
+                    boolean errore = response.getBoolean("error");
+                    if (errore) {
+                        showError(true);
+                    } else {
+                        showError(false);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error.toString());
+            }
+        });
+
+        mRequestQueue.add(multipartRequest);
+    }
+
     public void getPrimaNotaCassaList(final ArrayList<NotaCassa> mNotaCassa, final PrimaNotaCassaRecyclerAdapter adapter, int month, int year, int opType) {
 
         String url = mActivity.getString(R.string.mobile_url);

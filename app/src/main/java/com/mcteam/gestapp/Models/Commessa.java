@@ -333,7 +333,7 @@ public class Commessa implements Parcelable {
         return this.getID() > 0;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object other) {
         if (other == null) {
             return false;
@@ -347,6 +347,51 @@ public class Commessa implements Parcelable {
             return true;
         }
         return false;
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Commessa commessa = (Commessa) o;
+
+        if (ID != commessa.ID) return false;
+        if (id_cliente != commessa.id_cliente) return false;
+        if (id_commerciale != commessa.id_commerciale) return false;
+        if (id_referente_1 != commessa.id_referente_1) return false;
+        if (id_referente_2 != commessa.id_referente_2) return false;
+        if (off1 != commessa.off1) return false;
+        if (off2 != commessa.off2) return false;
+        if (off3 != commessa.off3) return false;
+        if (id_capo_progetto != commessa.id_capo_progetto) return false;
+        if (!codice_commessa.equals(commessa.codice_commessa)) return false;
+        if (nome_commessa != null ? !nome_commessa.equals(commessa.nome_commessa) : commessa.nome_commessa != null)
+            return false;
+        if (data != null ? !data.equals(commessa.data) : commessa.data != null) return false;
+        if (avanzamento != null ? !avanzamento.equals(commessa.avanzamento) : commessa.avanzamento != null)
+            return false;
+        return note != null ? note.equals(commessa.note) : commessa.note == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ID;
+        result = 31 * result + codice_commessa.hashCode();
+        result = 31 * result + id_cliente;
+        result = 31 * result + (nome_commessa != null ? nome_commessa.hashCode() : 0);
+        result = 31 * result + id_commerciale;
+        result = 31 * result + (data != null ? data.hashCode() : 0);
+        result = 31 * result + (avanzamento != null ? avanzamento.hashCode() : 0);
+        result = 31 * result + id_referente_1;
+        result = 31 * result + id_referente_2;
+        result = 31 * result + off1;
+        result = 31 * result + off2;
+        result = 31 * result + off3;
+        result = 31 * result + (note != null ? note.hashCode() : 0);
+        result = 31 * result + id_capo_progetto;
+        return result;
     }
 
     @Override
