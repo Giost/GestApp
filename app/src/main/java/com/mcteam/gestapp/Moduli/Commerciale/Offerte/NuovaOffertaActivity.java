@@ -1,11 +1,16 @@
 package com.mcteam.gestapp.Moduli.Commerciale.Offerte;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.database.DataSetObserver;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +31,7 @@ import com.mcteam.gestapp.Moduli.Gestionale.Allegati.AllegatiUtils;
 import com.mcteam.gestapp.Moduli.Gestionale.Commesse.NominativoSpinnerAdapter;
 import com.mcteam.gestapp.NetworkReq.VolleyRequests;
 import com.mcteam.gestapp.R;
+import com.mcteam.gestapp.Utils.Functions;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import java.io.File;
@@ -50,14 +56,28 @@ public class NuovaOffertaActivity extends AppCompatActivity {
     private TextView mAllegatoNome;
     private TextView mAllegatoSize;
     private BootstrapButton mAllegato;
+    private Commessa commessa;
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuova_offerta);
 
-        Commessa commessa = getIntent().getParcelableExtra("COMMESSA");
+        //Permette landscape e portrait solo se è un tablet
+        if (getResources().getBoolean(R.bool.portrait_only)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+
+        //***********************************************************************
+        //Cambiare colore alla actionBar
+        //************************************************************************
+        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)) {
+            Drawable actionBarBack = getDrawable(R.drawable.commerciale_home_background);
+            getSupportActionBar().setBackgroundDrawable(actionBarBack);
+        }
+
+        commessa = getIntent().getParcelableExtra("COMMESSA");
 
         EditText codCommessa = (EditText) findViewById(R.id.dett_off_new_codcomm);
         EditText cliente = (EditText) findViewById(R.id.dett_off_new_cliente);
@@ -84,6 +104,13 @@ public class NuovaOffertaActivity extends AppCompatActivity {
         //Lista nominativi
         mNominativiList = new ArrayList<>();
         NominativoSpinnerAdapter adapter = new NominativoSpinnerAdapter(this, R.layout.nominativo_societa_spinner_row, mNominativiList);
+        adapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                setupNominativoSpinner(commessa);
+            }
+        });
 
         //Riferenti 1, 2 e 3
         mRef1.setAdapter(adapter);
@@ -145,7 +172,6 @@ public class NuovaOffertaActivity extends AppCompatActivity {
                 mAllegatoLogo.setImageBitmap(logo);
                 mAllegatoSize.setText(mChoosenFile.length() + "Bytes");
             }
-            Log.d("FilePicker", mChoosenFile.toString());
             // Do anything with file
         }
     }
@@ -154,6 +180,27 @@ public class NuovaOffertaActivity extends AppCompatActivity {
 
     private void onClickSelData() {
         mDateFragment.show(getFragmentManager(), "datePicker");
+    }
+
+    public void setupNominativoSpinner(Commessa commessa) {
+        int indexReferenteOfferta1;
+        int indexReferenteOfferta2;
+        int indexReferenteOfferta3;
+
+        if (commessa.getReferente_offerta1() != null) {
+            indexReferenteOfferta1 = mNominativiList.indexOf(commessa.getReferente_offerta1());
+            mRef1.setSelection(indexReferenteOfferta1);
+        }
+
+        if (commessa.getReferente_offerta2() != null) {
+            indexReferenteOfferta2 = mNominativiList.indexOf(commessa.getReferente_offerta2());
+            mRef2.setSelection(indexReferenteOfferta2);
+        }
+
+        if (commessa.getReferente_offerta3() != null) {
+            indexReferenteOfferta3 = mNominativiList.indexOf(commessa.getReferente_offerta3());
+            mRef3.setSelection(indexReferenteOfferta3);
+        }
     }
 
     public void onClickAnnulla(View view) {
@@ -187,59 +234,28 @@ public class NuovaOffertaActivity extends AppCompatActivity {
         }
 
         if (!cancel) {
-            /*try {
-                //mVolleyRequests.uploadFile(mChoosenFile, nomeAllegatoSelected);
-                Gson gson = new Gson();
-                mVolleyRequests.addNewElementRequest();
-            } catch (IOException e) {
+            String data = null;
+            try
+            {
+                data = Functions.fromDateToSql(mData.getText().toString());
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
+            String json = "{\"allegato\":\""+mChoosenFile.getName()+"\",\"data_offerta\":\"" + data +"\",\"id_commessa\":" + commessa.getID() +",\"accettata\":0,\"versione\":0 ,\"off1_comm\":" + ((Nominativo) mRef1.getSelectedItem()).getID() +",\"off2_comm\":" + ((Nominativo) mRef2.getSelectedItem()).getID() +",\"off3_comm\":" + ((Nominativo) mRef3.getSelectedItem()).getID() +"}";
+            System.out.println(json);
+
+            try {
+                mVolleyRequests.addNewElementRequest(json,"offerta-nuovo/"+commessa.getID());
+                mVolleyRequests.uploadFileOfferta(mChoosenFile);
+            } catch (Exception e) {
                 e.printStackTrace();
-            }*/
+            }
         } else {
             if (focusView != null)
                 focusView.requestFocus();
         }
 
     }
-
-    /*private Offerta offertaToEncode() throws ParseException {
-
-        Offerta notaCassa = new Offerta();
-
-        int type = mType.getSelectedItemPosition();
-        String dataOperazione = mDataOperazione.getText().toString();
-        String causaleContabile = mCausaleContabile.getText().toString();
-        String sottoconto = mSottoconto.getText().toString();
-        String descrizione = mDescrizioneMovimenti.getText().toString();
-        Integer protocollo;
-        try {
-            protocollo = Integer.parseInt(mProtocollo.getText().toString()); //protocollo puo essere lasciato vuoto
-        } catch (NumberFormatException ex) {
-            protocollo = 0; //Se vuoto viene settato a 0 per convenzione
-        }
-
-        float dare;
-        try {
-            dare = Float.parseFloat((mDare.getText().toString()));
-        } catch (NumberFormatException exception) {
-            dare = 0;
-        }
-
-        float avere;
-        try {
-            avere = Float.parseFloat((mAvere.getText().toString()));
-        } catch (NumberFormatException exception) {
-            avere = 0;
-        }
-
-        notaCassa.setCassa(type);
-        notaCassa.setDataPagamento(Functions.fromDateToSql(dataOperazione));
-        notaCassa.setCausaleContabile(causaleContabile);
-        notaCassa.setSottoconto(sottoconto);
-        notaCassa.setDescrizione(descrizione);
-        notaCassa.setDareDb(Functions.format(dare));
-        notaCassa.setAvereDb(Functions.format(avere));
-        notaCassa.setNumeroProtocollo(protocollo);
-
-        return notaCassa;
-    } */
 }

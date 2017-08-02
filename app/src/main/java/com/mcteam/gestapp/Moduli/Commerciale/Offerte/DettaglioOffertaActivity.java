@@ -140,7 +140,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         mOffRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mOffRecyclerView.setAdapter(mOffAdapter);
 
-        getOfferte(true);
+        getOfferte();
 
         setupHeaderCommessa(mCommessa);
     }
@@ -239,6 +239,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             mOffArrayList.clear();
             mOffArrayList.addAll(newList);
             mOffAdapter.notifyDataSetChanged();
+            mOffRecyclerView.scrollToPosition(0);
         }
     }
 
@@ -266,7 +267,11 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             fieldsLayout.setVisibility(View.GONE);
             emptyLayout.setVisibility(View.VISIBLE);
             fabAdd.setVisibility(View.VISIBLE);
+            fabMenu.setVisibility(View.GONE);
         } else {
+            fieldsLayout.setVisibility(View.VISIBLE);
+            emptyLayout.setVisibility(View.GONE);
+            fabAdd.setVisibility(View.GONE);
             fabMenu.setVisibility(View.VISIBLE);
         }
 
@@ -308,7 +313,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
         }
     }
 
-    private void getOfferte(final boolean first)
+    private void getOfferte()
     {
         String url = getString(R.string.mobile_url) + "offerte-list/" + mCommessa.getID();
 
@@ -331,14 +336,7 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
                             }
                         }
                         mSearchList=newList;
-                        if (first)
-                        {
-                            initializeList(newList);
-                        }
-                        else
-                        {
-                            updateList(newList);
-                        }
+                        initializeList(newList);
                     }
                 },
                 new Response.ErrorListener() {
@@ -357,6 +355,6 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fabMenu.collapse();
-        getOfferte(false);
+        getOfferte();
     }
 }

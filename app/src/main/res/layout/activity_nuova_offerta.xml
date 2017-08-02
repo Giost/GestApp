@@ -92,6 +92,7 @@
                     android:id="@+id/dett_off_new_cliente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Cliente"
                     android:text="@string/empty" />
 
@@ -155,7 +156,6 @@
                 android:id="@+id/textView176"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:paddingLeft="5dp"
                 android:text="TERZO REFERENTE"
                 android:textColor="@color/black"
@@ -190,7 +190,6 @@
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:hint="Data"
-                android:inputType="numberDecimal"
                 android:text="@string/empty" />
         </LinearLayout>
 
@@ -214,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Oggetto"
-                android:inputType="numberDecimal"
+                android:focusable="false"
                 android:text="@string/empty" />
         </LinearLayout>
 
@@ -232,14 +231,6 @@
                 android:text="ALLEGATO"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
-
-            <!--<EditText
-                android:id="@+id/dett_off_new_alleg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Allegato"
-                android:inputType="numberDecimal"
-                android:text="@string/empty" />-->
 
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/dett_off_new_alleg"
@@ -296,14 +287,7 @@
             <Button
                 android:id="@+id/bCrea"
                 style="@style/button_crea"
-                android:onClick="onClickCrea"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/bModifica"
-                style="@style/button_modifica"
-                android:onClick="onClickModifica"
-                android:visibility="gone" />
+                android:onClick="onClickCrea" />
 
         </LinearLayout>
 

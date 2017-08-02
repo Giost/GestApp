@@ -234,15 +234,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/b_visual_modifica"
+                android:id="@+id/visual_offerta_modifica"
                 android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="30dp"
-                android:onClick="onClickEdit"
                 app:bootstrapBrand="warning"
                 app:bootstrapSize="lg"
                 app:bootstrapText="{fa-pencil}"
@@ -251,38 +249,15 @@
                 app:showOutline="true" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/b_visual_elimina"
+                android:id="@+id/visual_offerta_elimina"
                 android:layout_width="70dp"
                 android:layout_height="50dp"
-                android:onClick="onClickDelete"
                 app:bootstrapBrand="danger"
                 app:bootstrapSize="lg"
                 app:bootstrapText="{fa-trash}"
                 app:buttonMode="regular"
                 app:roundedCorners="true"
                 app:showOutline="true" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_elim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <Button
-                android:id="@+id/b_elim_annulla"
-                style="@style/button_annulla"
-                android:layout_marginRight="20dp"
-                android:onClick="onClickAnnulla" />
-
-            <Button
-                android:id="@+id/b_elim_elim"
-                style="@style/button_elimina"
-                android:onClick="onClickDelete" />
 
         </LinearLayout>
 
