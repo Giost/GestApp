@@ -191,7 +191,7 @@ public class OfferteUtils
         //make them in case they're not there
         dir.mkdirs();
         //create a standard java.io.File object for the Workbook to use
-        File wbfile = new File(dir, "Offerte.xlsx");
+        File wbfile = new File(dir, commessa.getNome_commessa() == null || commessa.getNome_commessa().equals("") ? " " : commessa.getNome_commessa()+".xlsx");
 
         Workbook wb = new HSSFWorkbook();
 
