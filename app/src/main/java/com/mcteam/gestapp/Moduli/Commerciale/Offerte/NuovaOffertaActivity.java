@@ -2,7 +2,6 @@ package com.mcteam.gestapp.Moduli.Commerciale.Offerte;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -19,18 +18,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.google.gson.Gson;
 import com.mcteam.gestapp.Fragments.DatePickerFragment;
-import com.mcteam.gestapp.Models.Commerciale.Offerta;
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.Models.Rubrica.Nominativo;
 import com.mcteam.gestapp.Moduli.Gestionale.Allegati.AllegatiUtils;
-import com.mcteam.gestapp.Moduli.Gestionale.Commesse.NominativoSpinnerAdapter;
 import com.mcteam.gestapp.NetworkReq.VolleyRequests;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.Utils.Functions;
@@ -46,14 +41,10 @@ import java.util.ArrayList;
 public class NuovaOffertaActivity extends AppCompatActivity {
 
     private VolleyRequests mVolleyRequests;
-    private ArrayList<Nominativo> mNominativiList;
     private EditText mData;
     private static final int FILE_CODE = 992;
     private File mChoosenFile;
     private DatePickerFragment mDateFragment;
-    private Spinner mRef1;
-    private Spinner mRef2;
-    private Spinner mRef3;
     private ImageView mAllegatoLogo;
     private TextView mAllegatoNome;
     private TextView mAllegatoSize;
@@ -83,9 +74,6 @@ public class NuovaOffertaActivity extends AppCompatActivity {
 
         EditText codCommessa = (EditText) findViewById(R.id.dett_off_new_codcomm);
         EditText cliente = (EditText) findViewById(R.id.dett_off_new_cliente);
-        mRef1 = (Spinner) findViewById(R.id.dett_off_new_ref1);
-        mRef2 = (Spinner) findViewById(R.id.dett_off_new_ref2);
-        mRef3 = (Spinner) findViewById(R.id.dett_off_new_ref3);
         mData = (EditText) findViewById(R.id.dett_off_new_data);
         EditText oggetto = (EditText) findViewById(R.id.dett_off_new_obj);
         mAllegato = (BootstrapButton) findViewById(R.id.dett_off_new_alleg);
@@ -102,22 +90,6 @@ public class NuovaOffertaActivity extends AppCompatActivity {
         //Cliente
         cliente.setText(commessa.getCliente().getNomeSocietà());
         cliente.setEnabled(false);
-
-        //Lista nominativi
-        mNominativiList = new ArrayList<>();
-        NominativoSpinnerAdapter adapter = new NominativoSpinnerAdapter(this, R.layout.nominativo_societa_spinner_row, mNominativiList);
-        adapter.registerDataSetObserver(new DataSetObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                setupNominativoSpinner(commessa);
-            }
-        });
-
-        //Riferenti 1, 2 e 3
-        mRef1.setAdapter(adapter);
-        mRef2.setAdapter(adapter);
-        mRef3.setAdapter(adapter);
 
         //Inizializzazione mData
         mDateFragment = new DatePickerFragment(mData);
@@ -156,7 +128,6 @@ public class NuovaOffertaActivity extends AppCompatActivity {
 
         //Riempita nominativi list
         mVolleyRequests = new VolleyRequests(this, this);
-        mVolleyRequests.getNominativiList(mNominativiList, adapter);
 
         creaButton.setVisibility(View.VISIBLE);
     }
@@ -184,26 +155,6 @@ public class NuovaOffertaActivity extends AppCompatActivity {
         mDateFragment.show(getFragmentManager(), "datePicker");
     }
 
-    public void setupNominativoSpinner(Commessa commessa) {
-        int indexReferenteOfferta1;
-        int indexReferenteOfferta2;
-        int indexReferenteOfferta3;
-
-        if (commessa.getReferente_offerta1() != null) {
-            indexReferenteOfferta1 = mNominativiList.indexOf(commessa.getReferente_offerta1());
-            mRef1.setSelection(indexReferenteOfferta1);
-        }
-
-        if (commessa.getReferente_offerta2() != null) {
-            indexReferenteOfferta2 = mNominativiList.indexOf(commessa.getReferente_offerta2());
-            mRef2.setSelection(indexReferenteOfferta2);
-        }
-
-        if (commessa.getReferente_offerta3() != null) {
-            indexReferenteOfferta3 = mNominativiList.indexOf(commessa.getReferente_offerta3());
-            mRef3.setSelection(indexReferenteOfferta3);
-        }
-    }
 
     public void onClickAnnulla(View view) {
         finish();
@@ -215,15 +166,8 @@ public class NuovaOffertaActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
-        /* Controllo selezione spinner */
-        if (mRef1.getSelectedItemPosition() == 0 ||
-                mRef2.getSelectedItemPosition() == 0 ||
-                mRef3.getSelectedItemPosition() == 0) {
-            Toast.makeText(getApplicationContext(), "Uno dei referenti non è stato selezionato: impossibile continuare", Toast.LENGTH_LONG).show();
-            cancel = true;
-        }
         /* Controllo se la mData è stata selezionata */
-        else if (!mDateFragment.isDataSelected()) {
+        if (!mDateFragment.isDataSelected()) {
             Toast.makeText(getApplicationContext(), "La data non è stata selezionata: impossibile continuare", Toast.LENGTH_LONG).show();
             focusView = mData;
             cancel = true;
@@ -245,7 +189,7 @@ public class NuovaOffertaActivity extends AppCompatActivity {
             {
                 System.out.println(e);
             }
-            String json = "{\"allegato\":\""+mChoosenFile.getName()+"\",\"data_offerta\":\"" + data +"\",\"id_commessa\":" + commessa.getID() +",\"accettata\":0,\"versione\":0 ,\"off1_comm\":" + ((Nominativo) mRef1.getSelectedItem()).getID() +",\"off2_comm\":" + ((Nominativo) mRef2.getSelectedItem()).getID() +",\"off3_comm\":" + ((Nominativo) mRef3.getSelectedItem()).getID() +"}";
+            String json = "{\"allegato\":\""+mChoosenFile.getName()+"\",\"data_offerta\":\"" + data +"\",\"id_commessa\":" + commessa.getID() +",\"accettata\":0,\"versione\":0}";
             System.out.println(json);
 
             try {

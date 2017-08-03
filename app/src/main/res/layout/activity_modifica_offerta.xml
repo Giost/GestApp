@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mcteam.gestapp.Moduli.Commerciale.Offerte.NuovaOffertaActivity">
+    tools:context="com.mcteam.gestapp.Moduli.Commerciale.Offerte.ModificaOffertaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,76 +101,6 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView172"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="PRIMO REFERENTE"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/modifica_offerta_ref1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Primo Referente"
-                android:text="@string/empty" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView174"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="SECONDO REFERENTE"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/modifica_offerta_ref2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Secondo Referente"
-                android:text="@string/empty" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="13dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView176"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:paddingLeft="5dp"
-                android:text="TERZO REFERENTE"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/modifica_offerta_ref3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Terzo Referente"
-                android:text="@string/empty" />
         </LinearLayout>
 
         <LinearLayout

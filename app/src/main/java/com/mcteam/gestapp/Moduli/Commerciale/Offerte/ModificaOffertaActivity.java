@@ -3,7 +3,6 @@ package com.mcteam.gestapp.Moduli.Commerciale.Offerte;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -24,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +33,6 @@ import com.mcteam.gestapp.Models.Commerciale.Offerta;
 import com.mcteam.gestapp.Models.Commessa;
 import com.mcteam.gestapp.Models.Rubrica.Nominativo;
 import com.mcteam.gestapp.Moduli.Gestionale.Allegati.AllegatiUtils;
-import com.mcteam.gestapp.Moduli.Gestionale.Commesse.NominativoSpinnerAdapter;
 import com.mcteam.gestapp.NetworkReq.VolleyRequests;
 import com.mcteam.gestapp.R;
 import com.mcteam.gestapp.Utils.Functions;
@@ -48,9 +45,6 @@ public class ModificaOffertaActivity extends AppCompatActivity {
 
     EditText mOffertaCodComm;
     EditText mOffertaClient;
-    Spinner mOffertaRef1;
-    Spinner mOffertaRef2;
-    Spinner mOffertaRef3;
     EditText mOffertaDataOff;
     EditText mOffertaObj;
     CheckBox mOffertaPresent;
@@ -66,7 +60,6 @@ public class ModificaOffertaActivity extends AppCompatActivity {
     Commessa commessa = null;
     VolleyRequests mMyRequests;
     DatePickerFragment mDateFragment;
-    ArrayList<Nominativo> mNominativiList;
     static final int FILE_CODE = 995;
     File mChoosenFile;
     Gson gson;
@@ -101,9 +94,6 @@ public class ModificaOffertaActivity extends AppCompatActivity {
         allegato = (LinearLayout) findViewById(R.id.modifica_offerta_layout_allegato);
         mOffertaCodComm = (EditText) findViewById(R.id.modifica_offerta_codcom);
         mOffertaClient = (EditText) findViewById(R.id.modifica_offerta_cliente);
-        mOffertaRef1 = (Spinner) findViewById(R.id.modifica_offerta_ref1);
-        mOffertaRef2 = (Spinner) findViewById(R.id.modifica_offerta_ref2);
-        mOffertaRef3 = (Spinner) findViewById(R.id.modifica_offerta_ref3);
         mOffertaDataOff = (EditText) findViewById(R.id.modifica_offerta_dataoff);
         mOffertaObj = (EditText) findViewById(R.id.modifica_offerta_oggetto);
         mOffertaPresent = (CheckBox) findViewById(R.id.modifica_offerta_present);
@@ -160,29 +150,6 @@ public class ModificaOffertaActivity extends AppCompatActivity {
         mOffertaClient.setText(commessa.getCliente().getNomeSocietà());
         mOffertaClient.setEnabled(false);
 
-        //Lista nominativi
-        mNominativiList = new ArrayList<>();
-        NominativoSpinnerAdapter adapter = new NominativoSpinnerAdapter(this, R.layout.nominativo_societa_spinner_row, mNominativiList);
-        adapter.registerDataSetObserver(new DataSetObserver() {
-            @Override
-            public void onChanged() {
-                super.onChanged();
-                setupNominativoSpinner(commessa);
-            }
-
-        });
-
-        //Riferenti 1, 2 e 3
-        mOffertaRef1.setAdapter(adapter);
-        mOffertaRef2.setAdapter(adapter);
-        mOffertaRef3.setAdapter(adapter);
-
-        mMyRequests.getNominativiList(mNominativiList, adapter);
-
-        //mOffertaRef2.setText(commessa.getReferente1().getNome() + commessa.getReferente1().getCognome());
-        //mOffertaRef3.setText(commessa.getReferente2().getNome() + commessa.getReferente2().getCognome());
-
-        //mOffertaDataOff.setText(offerta.getDataOfferta());
         mDateFragment = new DatePickerFragment(mOffertaDataOff);
         mOffertaDataOff.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,27 +183,6 @@ public class ModificaOffertaActivity extends AppCompatActivity {
         });
     }
 
-    public void setupNominativoSpinner(Commessa commessa) {
-        int indexReferenteOfferta1;
-        int indexReferenteOfferta2;
-        int indexReferenteOfferta3;
-
-        if (commessa.getReferente_offerta1() != null) {
-            indexReferenteOfferta1 = mNominativiList.indexOf(commessa.getReferente_offerta1());
-            mOffertaRef1.setSelection(indexReferenteOfferta1);
-        }
-
-        if (commessa.getReferente_offerta2() != null) {
-            indexReferenteOfferta2 = mNominativiList.indexOf(commessa.getReferente_offerta2());
-            mOffertaRef2.setSelection(indexReferenteOfferta2);
-        }
-
-        if (commessa.getReferente_offerta3() != null) {
-            indexReferenteOfferta3 = mNominativiList.indexOf(commessa.getReferente_offerta3());
-            mOffertaRef3.setSelection(indexReferenteOfferta3);
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -257,17 +203,8 @@ public class ModificaOffertaActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
-        Offerta offertaModifica = offerta;
-
-        /* Controllo selezione spinner */
-        if (mOffertaRef1.getSelectedItemPosition() == 0 ||
-                mOffertaRef2.getSelectedItemPosition() == 0 ||
-                mOffertaRef3.getSelectedItemPosition() == 0) {
-            Toast.makeText(getApplicationContext(), "Uno dei referenti non è stato selezionato: impossibile continuare", Toast.LENGTH_LONG).show();
-            cancel = true;
-        }
         /* Controllo se la mData è stata selezionata */
-        else if (TextUtils.isEmpty(mOffertaDataOff.getText().toString())) {
+        if (TextUtils.isEmpty(mOffertaDataOff.getText().toString())) {
             Toast.makeText(getApplicationContext(), "La data non è stata selezionata: impossibile continuare", Toast.LENGTH_LONG).show();
             focusView = mOffertaDataOff;
             cancel = true;
@@ -282,32 +219,6 @@ public class ModificaOffertaActivity extends AppCompatActivity {
         }
 
         if (!cancel) {
-            /*offertaModifica.setIdCommessa(offerta.getIdCommessa());
-            offertaModifica.setDataOfferta(mOffertaDataOff.getText().toString());
-            offertaModifica.setAccettata(mOffertaPresent.isChecked() ? 1 : 0);
-            offertaModifica.setVersione(offerta.getVersione());
-            if (rdModAllegato.isChecked())
-            {
-                offertaModifica.setAllegato(mChoosenFile.getName());
-            }
-            else
-            {
-                offertaModifica.setAllegato(offerta.getAllegato());
-            }
-
-            String json = gson.toJson(offertaModifica);*/
-
-            /*offerta.setDataOfferta(mOffertaDataOff.getText().toString());
-            offerta.setAccettata(mOffertaPresent.isChecked() ? 1 : 0);
-            if (rdModAllegato.isChecked())
-            {
-                offerta.setAllegato(mChoosenFile.getName());
-            }
-
-            commessa.setReferente_offerta1((Nominativo) mOffertaRef1.getSelectedItem());
-            commessa.setReferente_offerta2((Nominativo) mOffertaRef2.getSelectedItem());
-            commessa.setReferente_offerta3((Nominativo) mOffertaRef3.getSelectedItem());*/
-
             String data = null;
             try
             {
@@ -317,8 +228,9 @@ public class ModificaOffertaActivity extends AppCompatActivity {
             {
                 System.out.println(e);
             }
+
             String json = "{\"allegato\":\""+(rdModAllegato.isChecked() ? mChoosenFile.getName() : offerta.getAllegato())+"\",\"data_offerta\":\"" + data +"\",\"id_commessa\":" + offerta.getIdCommessa() +",\"accettata\":" + (mOffertaPresent.isChecked() ? 1 : 0) +",\"versione\":" + offerta.getVersione() +
-                    ",\"off1_comm\":" + ((Nominativo) mOffertaRef1.getSelectedItem()).getID() +",\"off2_comm\":" + ((Nominativo) mOffertaRef2.getSelectedItem()).getID() +",\"off3_comm\":" + ((Nominativo) mOffertaRef3.getSelectedItem()).getID() +",\"new_version\":" +  (rdSovrascrivi.isChecked() ? 0 : 1)+",\"edit_offerta\":" +  (rdModAllegato.isChecked() ? 1 : 0)+"}";
+                    ",\"new_version\":" +  (rdSovrascrivi.isChecked() ? 0 : 1)+",\"edit_offerta\":" +  (rdModAllegato.isChecked() ? 1 : 0)+"}";
             System.out.println(json);
 
             try {

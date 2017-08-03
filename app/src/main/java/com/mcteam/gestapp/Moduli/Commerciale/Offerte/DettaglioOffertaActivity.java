@@ -236,11 +236,8 @@ public class DettaglioOffertaActivity extends AppCompatActivity {
             emptyMode(true);
         else {
             emptyMode(false);
-            mOffArrayList.clear();
-            mOffArrayList.addAll(newList);
-            mOffAdapter.notifyDataSetChanged();
-            mOffRecyclerView.scrollToPosition(0);
         }
+        updateList(newList);
     }
 
     /**
