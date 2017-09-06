@@ -109,9 +109,9 @@ public class EliminaOffertaActivity extends AppCompatActivity {
 
         textOffertaCodComm.setText(commessa.getCodice_commessa());
         textOffertaClient.setText(commessa.getCliente().getNomeSocietà());
-        textOffertaRef1.setText(commessa.getCommerciale().getNome() + commessa.getCommerciale().getCognome());
-        textOffertaRef2.setText(commessa.getReferente1().getNome() + commessa.getReferente1().getCognome());
-        textOffertaRef3.setText(commessa.getReferente2().getNome() + commessa.getReferente2().getCognome());
+        textOffertaRef1.setText(commessa.getCommerciale()!=null ? commessa.getCommerciale().getNome() + commessa.getCommerciale().getCognome() : "");
+        textOffertaRef2.setText(commessa.getReferente1()!=null ? commessa.getReferente1().getNome() + commessa.getReferente1().getCognome() : "");
+        textOffertaRef3.setText(commessa.getReferente2()!=null ? commessa.getReferente2().getNome() + commessa.getReferente2().getCognome() : "");
         textOffertaDataOff.setText(offerta.getDataOfferta());
         textOffertaObj.setText(commessa.getNome_commessa()); //Non so principalmente che cosa settare, dal doc non si capisce
         textOffertaPresent.setChecked(offerta.getAccettata() == 1);

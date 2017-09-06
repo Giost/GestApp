@@ -402,7 +402,7 @@ public class VolleyRequests {
         mDeleteDialog.show();
     }
 
-    private void attemptDelete(String path) {
+    public void attemptDelete(String path) {
         String url = mContext.getString(R.string.mobile_url);
         url += path;
 
